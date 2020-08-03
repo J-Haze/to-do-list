@@ -34,6 +34,7 @@ if (storageAvailable('localStorage')) {
   }
 
 // let edittedObject = "";
+mode = "all";
 
 //Initialize project libarary
 function getProjectLibrary() {
@@ -91,6 +92,12 @@ function renderProjects(projectLibrary){
         return;
       } 
 
+    let allTodos = document.getElementById("projects-header");
+    let selectedProject = document.querySelector('.selectedProject')
+    // let allProjects = document.getElementsByClassName('project');
+    // let selectedProject = allProjects.getElementByClassName("selectedProject")
+    
+
     for (project in projectLibrary){
         let obj = projectLibrary[project];
         let newElement = document.createElement('div');
@@ -99,12 +106,23 @@ function renderProjects(projectLibrary){
         newElement.className = "project";
         projectsContent.appendChild(newElement);
 
+        //Event Listener for selecting the active project
+        newElement.onclick = function() {
+    
+            console.log("selectedProject:", selectedProject)
+            selectedProject.classList.remove("selectedProject");
+            console.log("selectedProject:", selectedProject)
+            newElement.classList.add("selectedProject");
+            console.log("selectedProject:", selectedProject)
+            mode = obj.projectName;
+            selectedProject = document.querySelector('.selectedProject')
+        };
 
         //Button to edit project title
         let edit = document.createElement('div');
         edit.innerHTML = '<i class="fa fa-pencil"></i>';
         edit.className = "edit";
-        // edit.classList.add = project;
+        
         edit.onclick = function() {
             modalProject.style.display = "block";
             edit.id = project;
@@ -129,8 +147,6 @@ function renderProjects(projectLibrary){
             renderProjects(projectLibrary)
           }
         newElement.appendChild(close);
-
-
 
 
     }

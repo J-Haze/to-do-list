@@ -75,6 +75,14 @@ div {
     align-items: center;
 }
 
+.project:hover{
+    cursor: pointer;
+}
+
+.selectedProject{
+    font-weight: bold;
+}
+
 .delete{
     /* height: 10px;
     width: 10px; */
