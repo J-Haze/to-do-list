@@ -33,7 +33,7 @@ if (storageAvailable('localStorage')) {
     alert("Local Storage Unavailable");
   }
 
-let edittedObject = "";
+// let edittedObject = "";
 
 //Initialize project libarary
 function getProjectLibrary() {
