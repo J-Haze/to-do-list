@@ -32,6 +32,18 @@ div {
     justify-content: center; 
 }
 
+#projects-header{
+    margin-top: 10px;
+}
+
+#projects-content{
+    width: 90%;
+}
+
+.project{
+    margin-top: 5px;
+}
+
 #new-project{
     width: 100%;
     display: flex;
@@ -49,7 +61,7 @@ div {
     /* padding-top: 1px; */
 }
 
-#project-line{
+#project-form{
     width: 200px;
     margin-right: 1px;
     margin-left: 2px;
