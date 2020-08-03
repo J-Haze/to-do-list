@@ -5,12 +5,15 @@
      <meta charset="UTF-8"/>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="css/main.css"> 
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
    <body>
       <div id="title"> To-Do's </div>
+      <div id="default" class="project"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
       <div id="columns">
       <div id="projects-column">
-        <div id="projects-header">Projects</div>
+        <div id="projects-header">All To-Do's</div>
         <div id="projects-content">
           <!-- <div id="default" class="project">Default</div> -->
         </div>
@@ -23,6 +26,15 @@
         <div id="todo-content"> </div>
       </div>
     </div>
+
+    <div id="modal-project" class="modal">
+      <div id="modal-project-content">
+        <span class="span">&times;</span>
+        <form id="form-project"> 
+          <input type="text" id="edit-project" class="form-input"></input>
+          <button type="button" id="submit-project">Submit</button>
+        </form>
+      </div>
     <script src="main.js"></script>
    </body>
   </html>
