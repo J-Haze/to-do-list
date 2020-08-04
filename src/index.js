@@ -94,10 +94,18 @@ function renderProjects(projectLibrary){
 
     let allTodos = document.getElementById("projects-header");
     let selectedProject = document.querySelector('.selectedProject')
+    allTodos.onclick = function() {
+        if (selectedProject != null){
+            selectedProject.classList.remove("selectedProject");
+        }
+        allTodos.classList.add("selectedProject");
+        mode = "all";
+        selectedProject = document.querySelector('.selectedProject')
+    };
+
     // let allProjects = document.getElementsByClassName('project');
     // let selectedProject = allProjects.getElementByClassName("selectedProject")
     
-
     for (project in projectLibrary){
         let obj = projectLibrary[project];
         let newElement = document.createElement('div');
@@ -108,12 +116,11 @@ function renderProjects(projectLibrary){
 
         //Event Listener for selecting the active project
         newElement.onclick = function() {
-    
-            console.log("selectedProject:", selectedProject)
-            selectedProject.classList.remove("selectedProject");
-            console.log("selectedProject:", selectedProject)
+            if (selectedProject != null){
+                selectedProject.classList.remove("selectedProject");
+            }
+
             newElement.classList.add("selectedProject");
-            console.log("selectedProject:", selectedProject)
             mode = obj.projectName;
             selectedProject = document.querySelector('.selectedProject')
         };
@@ -153,7 +160,7 @@ function renderProjects(projectLibrary){
     
 }
 
-//Modal & form
+//Add Project Modal
 let modalProject = document.getElementById("modal-project");
 let editProjectBtn = document.getElementById("submit-project");
 let projectSpan = document.getElementsByClassName("span")[0];
@@ -173,8 +180,12 @@ window.onclick = function(event) {
 }
 
 editProjectBtn.addEventListener('click', () => {
-    let changeProject = document.getElementById(edittedProject);
     let edittedValue = document.getElementById("edit-project").value;
+    if (edittedValue == ""){
+        return
+    }
+    
+    let changeProject = document.getElementById(edittedProject);
     let projectID = changeProject.id;
     console.log("project ID:", projectID)
 

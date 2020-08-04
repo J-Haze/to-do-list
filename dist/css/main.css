@@ -38,6 +38,10 @@ div {
     margin-right: auto;
 }
 
+#projects-header:hover{
+    cursor: pointer;
+}
+
 #projects-content{
     width: 90%;
 }
@@ -68,6 +72,7 @@ div {
     margin-right: 1px;
     margin-left: 2px;
 }
+
 
 .project{
     display: flex;
