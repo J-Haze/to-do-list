@@ -46,9 +46,6 @@ div {
     width: 90%;
 }
 
-.project{
-    margin-top: 5px;
-}
 
 #new-project{
     width: 100%;
@@ -73,11 +70,11 @@ div {
     margin-left: 2px;
 }
 
-
 .project{
     display: flex;
     padding-left: 5px;
     align-items: center;
+    margin-top: 5px;
 }
 
 .project:hover{
@@ -133,7 +130,8 @@ div {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 350px;
+    width: 80%;
+    height: 80%;
   }
 
   #form-project{
