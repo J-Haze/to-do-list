@@ -1,6 +1,8 @@
 // const { renderTasks } = require("./tasks");
+//^^Where did that come from
+console.log("check webpack4")
 
-  //Checks that Local Storage is available
+//Checks that Local Storage is available
 function storageAvailable(type) {
     var storage;
     try {
@@ -35,7 +37,7 @@ if (storageAvailable('localStorage')) {
   }
 
 // let edittedObject = "";
-let mode = "all";
+let activeProject = "all";
 // import {renderTasks} from './tasks';
 
 
@@ -49,10 +51,10 @@ function getProjectLibrary() {
   };
 
 //Factory Function to create Projects
-const addProject = (projectName, tasksArr) => {
+const addProject = (projectName, projectArray) => {
     return { 
         projectName: projectName,
-        tasksArr: tasksArr
+        projectArray: projectArray
     }
   };
 
@@ -60,6 +62,52 @@ const addProject = (projectName, tasksArr) => {
 function addProjectToLibrary(addProject) {
     projectLibrary.push(addProject);
 }
+
+//Factory Function to create Task
+const addTask = (taskName, project, priority, date, notes) => {
+    return { 
+        taskName: taskName,
+        project: project,
+        priority: priority,
+        date: date,
+        notes: notes
+    }
+    };
+
+//Adds new Task to Project
+function addTaskToProject(addTask, activeProject) {
+    activeProject.projectArray.push(addTask);
+}
+
+//Script for priority dropdown menu
+priorityDropdown = document.querySelector(".dropbtn");
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function dropdownFunction() {
+    priorityDropdown.classList.toggle("show");
+  };
+  
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+    var openDropdown = dropdowns[i];
+    if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+    }
+    }
+}
+}
+
+// toggle dropdown on click
+priorityDropdown.addEventListener('click', () => {
+    console.log('dropdown')
+    dropdownFunction();
+});
+
 
 
 
@@ -87,7 +135,7 @@ function renderProjects(projectLibrary){
             selectedProject.classList.remove("selectedProject");
         }
         allTodos.classList.add("selectedProject");
-        mode = "all";
+        activeProject = "all";
         selectedProject = document.querySelector('.selectedProject');
     };
 
@@ -109,7 +157,7 @@ function renderProjects(projectLibrary){
             }
 
             newElement.classList.add("selectedProject");
-            mode = obj.projectName;
+            activeProject = obj.projectName;
             selectedProject = document.querySelector('.selectedProject')
         };
 
@@ -214,8 +262,6 @@ editProjectBtn.addEventListener('click', () => {
     renderProjects(projectLibrary)
     modalProject.style.display = "none";
 });
-
-
 
 
 
