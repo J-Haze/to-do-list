@@ -1,6 +1,6 @@
 // const { renderTasks } = require("./tasks");
 //^^Where did that come from
-console.log("check webpack4")
+console.log("check webpack")
 
 //Checks that Local Storage is available
 function storageAvailable(type) {
@@ -79,34 +79,49 @@ function addTaskToProject(addTask, activeProject) {
     activeProject.projectArray.push(addTask);
 }
 
-//Script for priority dropdown menu
-priorityDropdown = document.querySelector(".dropbtn");
+//Script for priority
+let priorityValue = "low";
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function dropdownFunction() {
-    priorityDropdown.classList.toggle("show");
-  };
-  
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-    var openDropdown = dropdowns[i];
-    if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-    }
-    }
-}
-}
+let lowBtn = document.getElementById("lowBtn");
+let mediumBtn = document.getElementById("mediumBtn");
+let highBtn = document.getElementById("highBtn");
 
-// toggle dropdown on click
-priorityDropdown.addEventListener('click', () => {
-    console.log('dropdown')
-    dropdownFunction();
-});
+// if (readValue == "read") {
+//     readButton.classList.add("readSelected");
+//     readingButton.classList.remove("readingSelected");
+//     notReadButton.classList.remove("notReadSelected");
+// };
+lowBtn.onclick = function() {
+    lowBtn.classList.add("lowSelected");
+    mediumBtn.classList.remove("mediumSelected");
+    highBtn.classList.remove("highSelected");
+    priorityValue = "low";
+};
+
+// if (readValue == "reading") {
+//     readButton.classList.remove("readSelected");
+//     readingButton.classList.add("readingSelected");
+//     notReadButton.classList.remove("notReadSelected");
+// };
+mediumBtn.onclick = function() {
+    lowBtn.classList.remove("lowSelected");
+    mediumBtn.classList.add("mediumSelected");
+    highBtn.classList.remove("highSelected");
+    priorityValue = "medium";
+};
+
+// if (readValue == "notRead") {
+//     readButton.classList.remove("readSelected");
+//     readingButton.classList.remove("readingSelected");
+//     notReadButton.classList.add("notReadSelected");
+// };
+highBtn.onclick = function() {
+    lowBtn.classList.remove("lowSelected");
+    mediumBtn.classList.remove("mediumSelected");
+    highBtn.classList.add("highSelected");
+    priorityValue = "high";
+};
+
 
 
 
@@ -279,5 +294,6 @@ let projectLibrary = getProjectLibrary();
 
 //render
 renderProjects(projectLibrary);
+
 // renderTasks();
 //renderTodos(todoLibrary);

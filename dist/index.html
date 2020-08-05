@@ -23,15 +23,20 @@
       </div>
       <div id="todo-column">
         <div id="new-task">
-        <div id="addTaskBtn">+</div>
-        <input type="text" id="new-task-form" placeholder="New Task"></input>
-        <div id="date">Aug-4th, 2020</div>
-        <div class="dropdown">
-          <div class="dropbtn">Dropdown</div>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+          <div id="row-one">
+            <div id="addTaskBtn">+</div>
+            <input type="text" id="new-task-form" placeholder="New Task"></input>
+            <div id="date">Aug-4th, 2020</div>
+            <div id="priority-div"> Priority:
+              <div id="priority-input">
+                <div id="lowBtn" class="toggle lowSelected" value="Low" checked>Low</div>
+                <div id="mediumBtn" class="toggle" value="Medium">Medium</div>
+                <div id="highBtn" class="toggle" value="High">High</div>
+              </div>
+            </div>
+          </div>
+          <div id="row-two">
+            <textarea id="notes-input" placeholder="Notes"></textarea>
           </div>
         </div>
       </div>

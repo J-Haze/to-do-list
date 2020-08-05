@@ -2,6 +2,9 @@
 
 :root{
     --purple: rgb(186,85,211);
+    --green: rgb(97, 255, 97);
+    --yellow: rgb(248, 186, 70);
+    --red: rgb(248, 109, 109);
 }
 
 div {
@@ -112,51 +115,97 @@ div {
     cursor: pointer;
 }
 
-/* Dropdown Button */
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-background-color: #2980B9;
+
+#todo-column{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-position: relative;
-display: inline-block;
+#new-task{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    min-width: 600px;
+    margin-top: 10px;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-display: none;
-position: absolute;
-background-color: #f1f1f1;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+#row-one{
+    display: flex;
+    width: 600px;
+    min-width: 600px;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
+#row-two{
+    display: flex;
+    width: 600px;
+    min-width: 600px;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
+#notes-input{
+    width: 500px;
+    min-width: 500px;
+    line-height: 20px;
+    height: 66px;
+    overflow-y: auto;
+    resize: none;
+}
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+#addTaskBtn{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
 
+#date{
+
+}
+
+#priority-div{
+    font-size: .7em;
+    text-align: center;
+}
+
+
+#priority-input{
+    /* width: 170px; */
+    display: flex;
+    align-items: center;
+}
+
+/* Toggle Priority */
+.toggle{
+    display: flex;
+    width:50px;
+    height: 15px;
+    margin: 0px;
+    font-size: .7em;
+    justify-content: center;
+    align-items: center;
+    line-height: 100%;
+    border: solid black 1px;
+}
+
+.lowSelected{
+    border:var(--green) solid 2px;
+}
+
+.mediumSelected{
+    border:var(--yellow) solid 2px;
+}
+
+.highSelected{
+    border:var(--red) solid 2px;
+}
+
+
+
+
+/* New Project Modal */
 #modal-project{
     display: none;
     position: fixed;
@@ -226,13 +275,7 @@ display: block;
 
 
 
-#todo-column{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 
 
 
