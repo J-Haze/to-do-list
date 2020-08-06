@@ -9,19 +9,18 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
    <body>
-      <div id="title"> To-Do's </div>
+    <div id="title"> To-Do's </div>
+    <div id="content-container">
       <div id="columns">
-      <div id="projects-column">
-        <div id="projects-header" class="selectedProject">All To-Do's</div>
-        <div id="projects-content">
-          <!-- <div id="default" class="project">Default</div> -->
+        <div id="projects-column">
+          <div id="projects-header" class="selectedProject">All To-Do's</div>
+          <div id="projects-content"></div>
+          <div id="new-project">
+            <div id="add-project">+</div>
+            <input type="text" id="project-form" placeholder="New Project"></input>
+          </div>
         </div>
-        <div id="new-project">
-          <div id="add-project">+</div>
-          <input type="text" id="project-form" placeholder="New Project"></input>
-        </div>
-      </div>
-      <div id="todo-column">
+        <div id="todo-column">
         <div id="new-task">
           <div id="row-one">
             <div id="addTaskBtn">+</div>
@@ -39,19 +38,19 @@
             <textarea id="notes-input" placeholder="Notes"></textarea>
           </div>
         </div>
-      </div>
         <div id="todo-content"> </div>
       </div>
-    </div>
 
-    <div id="modal-project" class="modal">
-      <div id="modal-project-content">
-        <span class="span">&times;</span>
-        <form id="form-project"> 
-          <input type="text" id="edit-project" class="form-input" placeholder="Project Title"></input>
-          <button type="button" id="submit-project">Submit</button>
-        </form>
+      <div id="modal-project" class="modal">
+        <div id="modal-project-content">
+          <span class="span">&times;</span>
+          <form id="form-project"> 
+            <input type="text" id="edit-project" class="form-input" placeholder="Project Title"></input>
+            <button type="button" id="submit-project">Submit</button>
+          </form>
+        </div>
       </div>
+    </div>
     <script src="main.js"></script>
    </body>
   </html>

@@ -1,6 +1,6 @@
 // const { renderTasks } = require("./tasks");
 //^^Where did that come from
-console.log("check webpack")
+console.log("check webpack4")
 
 //Checks that Local Storage is available
 function storageAvailable(type) {
