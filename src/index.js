@@ -61,7 +61,18 @@ const addProject = (projectName, projectArray) => {
     }
   };
 
-let all = addProject("all", ['Task1', 'Task2'])
+//Factory Function to create Task
+const addTask = (taskName, project, priority, date, notes) => {
+return { 
+    taskName: taskName,
+    project: project,
+    priority: priority,
+    date: date,
+    notes: notes
+}
+};
+
+let all = addProject("all", [addTask('Task1', 'all', 'high', 'Aug 8 2020', 'notes1'), addTask('Task2', 'all', 'low', 'Aug 8 2020', 'notes2')])
 
 // let edittedObject = "";
 let activeProject = all;
@@ -71,16 +82,6 @@ function addProjectToLibrary(addProject) {
     projectLibrary.push(addProject);
 }
 
-//Factory Function to create Task
-const addTask = (taskName, project, priority, date, notes) => {
-    return { 
-        taskName: taskName,
-        project: project,
-        priority: priority,
-        date: date,
-        notes: notes
-    }
-    };
 
 //Adds new Task to Project
 function addTaskToProject(addTask) {

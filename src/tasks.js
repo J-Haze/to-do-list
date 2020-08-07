@@ -33,7 +33,6 @@ function renderTasks(activeProject, tasksArr){
         let obj = tasksArr[task];
         console.log("obj:", obj)
         let newElement = document.createElement('div');
-        newElement.innerHTML = obj.taskName;
         newElement.className = obj.taskName;
         newElement.classList.add("box");
         todoContent.appendChild(newElement);
