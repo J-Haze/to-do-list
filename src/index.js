@@ -84,8 +84,13 @@ function addProjectToLibrary(addProject) {
 
 
 //Adds new Task to Project
-function addTaskToProject(addTask) {
-    activeProject.projectArray.push(addTask);
+function addTaskToProject(newTask) {
+    console.log("acitve", activeProject)
+    console.log("here", activeProject.projectArray)
+    if (activeProject.projectArray == undefined){
+        activeProject.projectArray = newTask;
+    }
+    activeProject.projectArray.push(newTask);
 }
 
 //Script for priority
@@ -168,6 +173,8 @@ function renderProjects(projectLibrary){
 
             newElement.classList.add("selectedProject");
             // activeProject = obj.projectName;
+            console.log("obj before activeProj:", obj)
+            console.log("obj.projectArr before activeProj:", obj.projectArray)
             activeProject = obj;
             selectedProject = document.querySelector('.selectedProject')
             renderTasks(activeProject, activeProject.projectArray);
@@ -195,16 +202,20 @@ function renderProjects(projectLibrary){
         // close.innerHTML = '&#128465';
         close.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         close.className = "delete";
-        close.id = project.projectName;
-        //close.id = project;
+        // close.id = project.projectName;
+        // console.log("project.projectName", project.projectName)
+        // obj.projectName
+        close.id = project;
+        console.log("project here", project)
         close.onclick = function() {
-            projectLibrary.splice(close.id,1)
-            localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
+            projectLibrary.splice(close.id,1);
+            // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
             renderProjects(projectLibrary);
             renderTasks(activeProject, activeProject.projectArray);
           }
         newElement.appendChild(close);
-
+        
+        // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
 
     };
     
@@ -307,7 +318,7 @@ addTaskBtn.addEventListener('click', () => {
     let newTask = addTask(taskTitle, activeProject, priority, date, notes);
 
     addTaskToProject(newTask);
-    localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
+    // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderTasks(activeProject, activeProject.projectArray);
 })
 

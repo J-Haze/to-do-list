@@ -18,7 +18,7 @@ function renderTasks(activeProject, tasksArr){
     //May only need active project and then can get tasksArr from there?
     
     console.log("Active Project:", activeProject)
-    console.log("tasksArr:", tasksArr)
+    console.log("tasksArr:2", tasksArr)
 
     if(todoContent.length === 0) {
         return
@@ -59,8 +59,6 @@ function renderTasks(activeProject, tasksArr){
         noteDisp.classList.add("noteDisplay");
         newElement.appendChild(noteDisp);
     };
-
-
 
 };
 
