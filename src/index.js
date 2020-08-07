@@ -83,7 +83,7 @@ const addTask = (taskName, project, priority, date, notes) => {
     };
 
 //Adds new Task to Project
-function addTaskToProject(addTask, activeProject) {
+function addTaskToProject(addTask) {
     activeProject.projectArray.push(addTask);
 }
 
@@ -272,7 +272,39 @@ editProjectBtn.addEventListener('click', () => {
     modalProject.style.display = "none";
 });
 
+//Event Listener for "addTaskBtn"
 
+let addTaskBtn = document.getElementById("addTaskBtn");
+
+addTaskBtn.addEventListener('click', () => {
+    //Get task from the form
+    let taskTitle = document.getElementById("new-task-form").value;
+    let priority = priorityValue;
+    //Will need to reformat how it gets data from "date"
+    let date = document.getElementById("date").innerHTML;
+    let notes = document.getElementById("notes-input").value;
+
+    // if (.length < 1){return};
+    //Do I need a length check there? ^^
+
+    //Make sure form isn't empty
+    if (taskTitle == ""){return}
+
+    //check for duplicate names
+    for (let task in activeProject.projectArray){
+        let obj = activeProject.projectArray[task];
+        if (obj.taskName == taskTitle){
+            taskTitle = `${taskTitle}.1`;
+        }
+    }
+    
+    // let newProjectArray = [];
+    let newTask = addTask(taskTitle, activeProject, priority, date, notes);
+
+    addTaskToProject(newTask);
+    localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
+    renderTasks(activeProject, activeProject.projectArray);
+})
 
 
 //add event listeners for all "project" class, when you click on it style changes to selected, removes selected from others, and 
