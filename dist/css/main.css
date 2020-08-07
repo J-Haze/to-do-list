@@ -164,7 +164,7 @@ div {
     width: 500px;
     min-width: 450px;
     margin-top: 10px;
-    /* margin-left: 5px; */
+    margin-left: 5px;
 }
 
 #row-one{
@@ -302,6 +302,11 @@ div {
     height: 66px;
     overflow-y: auto;
     resize: none;
+}
+
+#todo-content{
+    height: 100%;
+    border: black 1px solid;
 }
 
 
