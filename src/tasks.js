@@ -37,12 +37,27 @@ function renderTasks(activeProject, tasksArr){
         newElement.classList.add("box");
         todoContent.appendChild(newElement);
 
-
         let taskTitle = document.createElement('div');
         taskTitle.innerHTML = obj.taskName;
         taskTitle.classList.add(obj.taskName);
         taskTitle.classList.add("task");
         newElement.appendChild(taskTitle);
+
+        let priorityDisp = document.createElement('div');
+        priorityDisp.innerHTML = obj.priority;
+        priorityDisp.classList.add(obj.priority);
+        priorityDisp.classList.add("priorityDisplay");
+        newElement.appendChild(priorityDisp);
+
+        let dateDisp = document.createElement('div');
+        dateDisp.innerHTML = obj.date;
+        dateDisp.classList.add("dateDisplay");
+        newElement.appendChild(dateDisp);
+
+        let noteDisp = document.createElement('div');
+        noteDisp.innerHTML = obj.notes;
+        noteDisp.classList.add("noteDisplay");
+        newElement.appendChild(noteDisp);
     };
 
 

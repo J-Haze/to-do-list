@@ -311,6 +311,8 @@ div {
 
 .box{
     border: solid 1px black;
+    margin-top: 5px;
+    margin-left: 10px;
 }
 
 
