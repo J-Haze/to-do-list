@@ -1,6 +1,8 @@
+import {renderTasks} from './tasks.js';
+
 // const { renderTasks } = require("./tasks");
 //^^Where did that come from
-console.log("check webpack5")
+console.log("check webpack7")
 
 //Checks that Local Storage is available
 function storageAvailable(type) {
@@ -36,8 +38,7 @@ if (storageAvailable('localStorage')) {
     alert("Local Storage Unavailable");
   }
 
-// let edittedObject = "";
-let activeProject = "all";
+
 // import {renderTasks} from './tasks';
 
 
@@ -57,6 +58,11 @@ const addProject = (projectName, projectArray) => {
         projectArray: projectArray
     }
   };
+
+// let all = addProject("all", ['Task1', 'Task2'])
+
+// let edittedObject = "";
+let activeProject = 'all';
 
 //Adds new project to the "projectLibrary"
 function addProjectToLibrary(addProject) {
@@ -86,11 +92,6 @@ let lowBtn = document.getElementById("lowBtn");
 let mediumBtn = document.getElementById("mediumBtn");
 let highBtn = document.getElementById("highBtn");
 
-// if (readValue == "read") {
-//     readButton.classList.add("readSelected");
-//     readingButton.classList.remove("readingSelected");
-//     notReadButton.classList.remove("notReadSelected");
-// };
 lowBtn.onclick = function() {
     lowBtn.classList.add("lowSelected");
     mediumBtn.classList.remove("mediumSelected");
@@ -98,11 +99,6 @@ lowBtn.onclick = function() {
     priorityValue = "low";
 };
 
-// if (readValue == "reading") {
-//     readButton.classList.remove("readSelected");
-//     readingButton.classList.add("readingSelected");
-//     notReadButton.classList.remove("notReadSelected");
-// };
 mediumBtn.onclick = function() {
     lowBtn.classList.remove("lowSelected");
     mediumBtn.classList.add("mediumSelected");
@@ -110,21 +106,12 @@ mediumBtn.onclick = function() {
     priorityValue = "medium";
 };
 
-// if (readValue == "notRead") {
-//     readButton.classList.remove("readSelected");
-//     readingButton.classList.remove("readingSelected");
-//     notReadButton.classList.add("notReadSelected");
-// };
 highBtn.onclick = function() {
     lowBtn.classList.remove("lowSelected");
     mediumBtn.classList.remove("mediumSelected");
     highBtn.classList.add("highSelected");
     priorityValue = "high";
 };
-
-
-
-
 
 //Creates new div with the new project object
 let projectsContent = document.getElementById("projects-content");
@@ -136,10 +123,11 @@ function clearProjectLibrary(){
 function renderProjects(projectLibrary){
     clearProjectLibrary();
     
-    if(projectsContent.length === 0) {
+    if(projectsContent.length < 1) {
         return
-      } 
-    if(projectLibrary.length === 0){
+      }
+    console.log(projectLibrary.length)
+      if(projectLibrary.length < 1){
         return
     }
 
@@ -157,7 +145,10 @@ function renderProjects(projectLibrary){
     // let allProjects = document.getElementsByClassName('project');
     // let selectedProject = allProjects.getElementByClassName("selectedProject")
     
-    for (project in projectLibrary){
+    //!!This "project" is where the issue is?
+    console.log(projectLibrary)
+    for (project in projectLibrary) {
+        console.log(projectLibrary[project])
         let obj = projectLibrary[project];
         let newElement = document.createElement('div');
         newElement.innerHTML = obj.projectName;
@@ -208,15 +199,16 @@ function renderProjects(projectLibrary){
         newElement.appendChild(close);
 
 
-    }
+    };
     
-}
+};
 
 //Even Listener for Add Project Button
 let addProjectBtn = document.getElementById("add-project");
 
 addProjectBtn.addEventListener('click', () => {
     let projectTitle = document.getElementById("project-form").value;
+    if (projectLibrary.length < 1){return};
     //check for duplicate names
     for (project in projectLibrary){
         let obj = projectLibrary[project];
@@ -227,7 +219,7 @@ addProjectBtn.addEventListener('click', () => {
 
     if (projectTitle == ""){return}
     let newProjectArray = [];
-    newProject = addProject(projectTitle, newProjectArray);
+    let newProject = addProject(projectTitle, newProjectArray);
 
     addProjectToLibrary(newProject);
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
@@ -289,11 +281,11 @@ editProjectBtn.addEventListener('click', () => {
 
 //will need an array of all existing to-do's as objects
 
-
 let projectLibrary = getProjectLibrary();
 
 //render
 renderProjects(projectLibrary);
 
-// renderTasks();
+// console.log("Index Active Project:", activeProject, "Index projectArray:", activeProject.projectArray)
+// renderTasks(activeProject, activeProject.projectArray);
 //renderTodos(todoLibrary);
