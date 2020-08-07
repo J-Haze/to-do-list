@@ -25,7 +25,7 @@ function renderTasks(activeProject, tasksArr){
       };
 
 
-    if(tasksArr.length === 0){
+    if(tasksArr == null){
         return
     };
 

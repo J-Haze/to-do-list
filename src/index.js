@@ -140,8 +140,9 @@ function renderProjects(projectLibrary){
             selectedProject.classList.remove("selectedProject");
         }
         allTodos.classList.add("selectedProject");
-        activeProject = "all";
+        activeProject = all;
         selectedProject = document.querySelector('.selectedProject');
+        renderTasks(activeProject, activeProject.projectArray);
     };
 
     // let allProjects = document.getElementsByClassName('project');
@@ -165,8 +166,10 @@ function renderProjects(projectLibrary){
             }
 
             newElement.classList.add("selectedProject");
-            activeProject = obj.projectName;
+            // activeProject = obj.projectName;
+            activeProject = obj;
             selectedProject = document.querySelector('.selectedProject')
+            renderTasks(activeProject, activeProject.projectArray);
         };
 
         //Button to edit project title
@@ -196,7 +199,8 @@ function renderProjects(projectLibrary){
         close.onclick = function() {
             projectLibrary.splice(close.id,1)
             localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
-            renderProjects(projectLibrary)
+            renderProjects(projectLibrary);
+            renderTasks(activeProject, activeProject.projectArray);
           }
         newElement.appendChild(close);
 
