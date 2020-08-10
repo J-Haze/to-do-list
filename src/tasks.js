@@ -5,7 +5,7 @@
 //format for "getTaskList"
 //I think the local storage should be done through index.js (the tasks should be stored witht hte project right? In the projectArray?)
 
-
+// let projectIndex = localStorage.projectIndex || 0;
 
 function renderTasks(activeProject, tasksArr){
     console.log('test renderTasks')
@@ -59,7 +59,26 @@ function renderTasks(activeProject, tasksArr){
         noteDisp.classList.add("noteDisplay");
         newElement.appendChild(noteDisp);
     };
+    // const removeTodo = (todoID) => {
+    //     const index = todos.findIndex(todo => {
+    //         return todo.getTodoID() === todoID;
+    //     })
 
+    //     todos.splice(index, 1);
+    // }
+    
+    // const exportForLocalStorage = () => {
+    //     const todosForExport = todos.map(todo => todo.exportForLocalStorage());
+
+    //     return {
+    //         name,
+    //         todos: todosForExport
+    //     };
+    // }
+    // return {
+    //     removeTodo,
+    //     exportForLocalStorage
+    // };
 };
 
 export{renderTasks}

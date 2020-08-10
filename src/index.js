@@ -48,7 +48,8 @@ if (storageAvailable('localStorage')) {
 function getProjectLibrary() {
     let projectLibrary = [];
     if(localStorage.length > 0) { 
-      projectLibrary = JSON.parse(localStorage.getItem("projectLibrary"));
+        todos = JSON.parse(localStorage.getItem("todos"));
+        projectLibrary = JSON.parse(localStorage.getItem("projectLibrary"));
     }
     return projectLibrary;
   };
@@ -177,6 +178,11 @@ function renderProjects(projectLibrary){
             console.log("obj.projectArr before activeProj:", obj.projectArray)
             activeProject = obj;
             selectedProject = document.querySelector('.selectedProject')
+
+            //code to load local storage of project Array? aka tasks?
+            // if(localStorage.length > 0) { 
+            //     projectLibrary = JSON.parse(localStorage.getItem("activeProject.projectArray"));
+            //   }
             renderTasks(activeProject, activeProject.projectArray);
         };
 
@@ -216,7 +222,6 @@ function renderProjects(projectLibrary){
         newElement.appendChild(close);
         
         // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
-
     };
     
 };
@@ -240,6 +245,7 @@ addProjectBtn.addEventListener('click', () => {
     let newProject = addProject(projectTitle, newProjectArray);
 
     addProjectToLibrary(newProject);
+    localStorage.setItem("todos", JSON.stringify(todos));
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderProjects(projectLibrary);
 })
@@ -283,6 +289,7 @@ editProjectBtn.addEventListener('click', () => {
 
 
     console.log(projectLibrary)
+    localStorage.setItem("todos", JSON.stringify(todos));
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderProjects(projectLibrary)
     modalProject.style.display = "none";
@@ -318,8 +325,13 @@ addTaskBtn.addEventListener('click', () => {
     let newTask = addTask(taskTitle, activeProject, priority, date, notes);
 
     addTaskToProject(newTask);
-    // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
+    //
+    // localStorage.setItem("activeProject.projectArray", JSON.stringify(activeProject.projectArray));
     renderTasks(activeProject, activeProject.projectArray);
+    //I think this is important to have
+    localStorage.setItem("todos", JSON.stringify(todos));
+    console.log("Project Library:", projectLibrary)
+    localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
 })
 
 
