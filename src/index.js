@@ -220,6 +220,7 @@ function renderProjects(projectLibrary){
             edittedProject = obj.projectName;
             // console.log(obj.projectName)
             // console.log("edittedProject", edittedProject)
+
             return edittedProject = edittedProject
             // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
             // renderProjects(projectLibrary)
@@ -308,7 +309,7 @@ editProjectBtn.addEventListener('click', () => {
     
     let changeProject = document.getElementById(edittedProject);
     let projectID = changeProject.id;
-    // console.log("project ID:", projectID)
+
 
     for (project in projectLibrary){
         let obj = projectLibrary[project];
@@ -320,10 +321,25 @@ editProjectBtn.addEventListener('click', () => {
             // obj.id = edittedValue;
         }
     }
+    
+        console.log("project ID:", projectID)
+        console.log("edittedValue:,", edittedValue)
+
+    for (task in allTasks){
+        console.log('task.projectname,', allTasks[task].project)
+        // console.log('obj id', edittedProject)
+        // console.log('project', project)
+        if (allTasks[task].project == projectID){
+            console.log('match')
+            allTasks[task].project = edittedValue
+        }}
+
 
 
     // console.log(projectLibrary)
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
+    renderTasks(activeProject, allTasks);
     renderProjects(projectLibrary)
     modalProject.style.display = "none";
 });
