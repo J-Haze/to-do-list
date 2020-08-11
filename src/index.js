@@ -104,15 +104,15 @@ function addProjectToLibrary(addProject) {
 
 //Adds new Task to Project
 function addTaskToProject(newTask) {
-    console.log("acitve", activeProject)
-    console.log("here", activeProject.projectArray)
-    console.log("New task:", newTask)
+    // console.log("acitve", activeProject)
+    // console.log("here", activeProject.projectArray)
+    // console.log("New task:", newTask)
     if (activeProject.projectArray == undefined){
         activeProject.projectArray = newTask;
         allTasks = newTask;
     }
     activeProject.projectArray.push(newTask);
-    console.log("All Tasks Here:", allTasks)
+    // console.log("All Tasks Here:", allTasks)
     allTasks.push(newTask);
 }
 
@@ -157,7 +157,7 @@ function renderProjects(projectLibrary){
     if(projectsContent.length == 0) {
         return
       }
-    console.log(projectLibrary.length)
+    // console.log(projectLibrary.length)
       if(projectLibrary.length == 0){
         return
     }
@@ -178,9 +178,9 @@ function renderProjects(projectLibrary){
     // let selectedProject = allProjects.getElementByClassName("selectedProject")
     
     //!!This "project" is where the issue is?
-    console.log(projectLibrary)
+    // console.log(projectLibrary)
     for (let project in projectLibrary) {
-        console.log(projectLibrary[project])
+        // console.log(projectLibrary[project])
         let obj = projectLibrary[project];
         let newElement = document.createElement('div');
         newElement.innerHTML = obj.projectName;
@@ -196,10 +196,10 @@ function renderProjects(projectLibrary){
 
             newElement.classList.add("selectedProject");
             // activeProject = obj.projectName;
-            console.log("obj before activeProj:", obj)
-            console.log("obj.projectArr before activeProj:", obj.projectArray)
+            // console.log("obj before activeProj:", obj)
+            // console.log("obj.projectArr before activeProj:", obj.projectArray)
             activeProject = obj;
-            console.log("!! activeProject:", activeProject)
+            // console.log("!! activeProject:", activeProject)
             selectedProject = document.querySelector('.selectedProject')
 
             //code to load local storage of project Array? aka tasks?
@@ -218,8 +218,8 @@ function renderProjects(projectLibrary){
             modalProject.style.display = "block";
             edit.id = project;
             edittedProject = obj.projectName;
-            console.log(obj.projectName)
-            console.log("edittedProject", edittedProject)
+            // console.log(obj.projectName)
+            // console.log("edittedProject", edittedProject)
             return edittedProject = edittedProject
             // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
             // renderProjects(projectLibrary)
@@ -235,24 +235,19 @@ function renderProjects(projectLibrary){
         // console.log("project.projectName", project.projectName)
         // obj.projectName
         close.id = project;
-        console.log("project here", project)
+        // console.log("project here", project)
         close.onclick = function() {
             closeName = projectLibrary[close.id].projectName;
+            console.log("closeName:", closeName)
             projectLibrary.splice(close.id,1);
             for (task in allTasks){
-                console.log('task.projectname,', allTasks[task].taskName)
+                console.log('task.projectname,', allTasks[task].project)
                 console.log('obj id', closeName)
-                if (allTasks[task].taskname == closeName){
+                if (allTasks[task].project == closeName){
                     console.log('match')
                     allTasks.splice(task,1)
                 }
             }
-            // if(allTasks.some(task => task.projectName == close.id)){
-            //     alert(`${close.id} found inside the array.`);
-            // } else{
-                
-            //     alert(`${close.id} NOT found inside the array.`);
-            // }
 
             localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
             renderProjects(projectLibrary);
@@ -313,13 +308,13 @@ editProjectBtn.addEventListener('click', () => {
     
     let changeProject = document.getElementById(edittedProject);
     let projectID = changeProject.id;
-    console.log("project ID:", projectID)
+    // console.log("project ID:", projectID)
 
     for (project in projectLibrary){
         let obj = projectLibrary[project];
-        console.log(obj.projectName)
+        // console.log(obj.projectName)
         if (obj.projectName == projectID){
-            console.log("match")
+            // console.log("match")
             // obj.innerHTML = edittedValue;
             obj.projectName = edittedValue;
             // obj.id = edittedValue;
@@ -327,7 +322,7 @@ editProjectBtn.addEventListener('click', () => {
     }
 
 
-    console.log(projectLibrary)
+    // console.log(projectLibrary)
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderProjects(projectLibrary)
     modalProject.style.display = "none";
@@ -379,8 +374,8 @@ addTaskBtn.addEventListener('click', () => {
     renderTasks(activeProject, allTasks);
     //I think this is important to have
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    console.log("All Tasks:", allTasks)
-    console.log("Project Library:", projectLibrary)
+    // console.log("All Tasks:", allTasks)
+    // console.log("Project Library:", projectLibrary)
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
 });
 
@@ -398,7 +393,7 @@ let projectLibrary = getProjectLibrary();
 //render
 renderProjects(projectLibrary);
 
-console.log("Index Active Project:", activeProject, "-Index projectArray:", activeProject.projectArray)
+// console.log("Index Active Project:", activeProject, "-Index projectArray:", activeProject.projectArray)
 // renderTasks(activeProject, activeProject.projectArray);
 renderTasks(activeProject, allTasks);
 //renderTodos(todoLibrary);
