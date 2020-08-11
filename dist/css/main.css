@@ -310,9 +310,11 @@ div {
 }
 
 .box{
+    display: flex;
     border: solid 1px black;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 26px;
+    width: 478px;
 }
 
 

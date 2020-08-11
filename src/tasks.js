@@ -60,8 +60,11 @@ function renderTasks(activeProject, tasksArr){
             newElement.appendChild(dateDisp);
     
             let noteDisp = document.createElement('div');
-            noteDisp.innerHTML = obj.notes;
+            // noteDisp.innerHTML = obj.notes;
+            noteDisp.innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i>';
             noteDisp.classList.add("noteDisplay");
+            noteDisp.id = task;
+            noteDisp.text = obj.notes;
             newElement.appendChild(noteDisp);
 
             let closeTask = document.createElement('div');
