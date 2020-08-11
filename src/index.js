@@ -47,12 +47,26 @@ if (storageAvailable('localStorage')) {
 //Initialize project libarary
 function getProjectLibrary() {
     let projectLibrary = [];
-    if(localStorage.length > 0) { 
-        todos = JSON.parse(localStorage.getItem("todos"));
-        projectLibrary = JSON.parse(localStorage.getItem("projectLibrary"));
+    storedLibrary = JSON.parse(localStorage.getItem("projectLibrary"));
+    if(storedLibrary.length > 0) { 
+        projectLibrary = storedLibrary;
     }
     return projectLibrary;
   };
+
+function getAllTasks() {
+    let allTasks = [];
+    let storedTasks = JSON.parse(localStorage.getItem("allTasks"));
+    if (storedTasks == null){
+        allTasks = [];
+        return allTasks
+    }
+    if(storedTasks.length > 0) { 
+        allTasks = storedTasks;
+    }
+    return allTasks;
+  };
+
 
 //Factory Function to create Projects
 const addProject = (projectName, projectArray) => {
@@ -73,10 +87,14 @@ return {
 }
 };
 
-let all = addProject("all", [addTask('Task1', 'all', 'high', 'Aug 8 2020', 'notes1'), addTask('Task2', 'all', 'low', 'Aug 8 2020', 'notes2')])
+allTasks = getAllTasks();
+console.log("GetAllTasks:", allTasks)
+
+let allTasksTab = addProject("all", allTasks);
+
 
 // let edittedObject = "";
-let activeProject = all;
+let activeProject = allTasksTab;
 
 //Adds new project to the "projectLibrary"
 function addProjectToLibrary(addProject) {
@@ -88,10 +106,14 @@ function addProjectToLibrary(addProject) {
 function addTaskToProject(newTask) {
     console.log("acitve", activeProject)
     console.log("here", activeProject.projectArray)
+    console.log("New task:", newTask)
     if (activeProject.projectArray == undefined){
         activeProject.projectArray = newTask;
+        allTasks = newTask;
     }
     activeProject.projectArray.push(newTask);
+    console.log("All Tasks Here:", allTasks)
+    allTasks.push(newTask);
 }
 
 //Script for priority
@@ -147,9 +169,9 @@ function renderProjects(projectLibrary){
             selectedProject.classList.remove("selectedProject");
         }
         allTodos.classList.add("selectedProject");
-        activeProject = all;
+        activeProject = allTasksTab;
         selectedProject = document.querySelector('.selectedProject');
-        renderTasks(activeProject, activeProject.projectArray);
+        renderTasks(activeProject, allTasks);
     };
 
     // let allProjects = document.getElementsByClassName('project');
@@ -177,13 +199,14 @@ function renderProjects(projectLibrary){
             console.log("obj before activeProj:", obj)
             console.log("obj.projectArr before activeProj:", obj.projectArray)
             activeProject = obj;
+            console.log("!! activeProject:", activeProject)
             selectedProject = document.querySelector('.selectedProject')
 
             //code to load local storage of project Array? aka tasks?
             // if(localStorage.length > 0) { 
             //     projectLibrary = JSON.parse(localStorage.getItem("activeProject.projectArray"));
             //   }
-            renderTasks(activeProject, activeProject.projectArray);
+            renderTasks(activeProject, allTasks);
         };
 
         //Button to edit project title
@@ -214,10 +237,26 @@ function renderProjects(projectLibrary){
         close.id = project;
         console.log("project here", project)
         close.onclick = function() {
+            closeName = projectLibrary[close.id].projectName;
             projectLibrary.splice(close.id,1);
-            // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
+            for (task in allTasks){
+                console.log('task.projectname,', allTasks[task].taskName)
+                console.log('obj id', closeName)
+                if (allTasks[task].taskname == closeName){
+                    console.log('match')
+                    allTasks.splice(task,1)
+                }
+            }
+            // if(allTasks.some(task => task.projectName == close.id)){
+            //     alert(`${close.id} found inside the array.`);
+            // } else{
+                
+            //     alert(`${close.id} NOT found inside the array.`);
+            // }
+
+            localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
             renderProjects(projectLibrary);
-            renderTasks(activeProject, activeProject.projectArray);
+            renderTasks(activeProject, allTasks);
           }
         newElement.appendChild(close);
         
@@ -244,8 +283,8 @@ addProjectBtn.addEventListener('click', () => {
     let newProjectArray = [];
     let newProject = addProject(projectTitle, newProjectArray);
 
+    let obj = "";
     addProjectToLibrary(newProject);
-    localStorage.setItem("todos", JSON.stringify(todos));
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderProjects(projectLibrary);
 })
@@ -289,7 +328,6 @@ editProjectBtn.addEventListener('click', () => {
 
 
     console.log(projectLibrary)
-    localStorage.setItem("todos", JSON.stringify(todos));
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderProjects(projectLibrary)
     modalProject.style.display = "none";
@@ -311,28 +349,40 @@ addTaskBtn.addEventListener('click', () => {
     //Do I need a length check there? ^^
 
     //Make sure form isn't empty
-    if (taskTitle == ""){return}
+    if (taskTitle == ""){
+        console.log('Task Title is blank')
+        return}
+    if (activeProject == allTasksTab){
+        alert("Please select a Project to add To-Do to.")
+        return
+    }
 
     //check for duplicate names
-    for (let task in activeProject.projectArray){
-        let obj = activeProject.projectArray[task];
-        if (obj.taskName == taskTitle){
+    // for (let task in activeProject.projectArray){
+    //     let obj = activeProject.projectArray[task];
+    //     if (obj.taskName == taskTitle){
+    //         taskTitle = `${taskTitle}.1`;
+    //     }
+    // }
+    for (task in allTasks){
+        if (task == taskTitle){
             taskTitle = `${taskTitle}.1`;
         }
     }
     
     // let newProjectArray = [];
-    let newTask = addTask(taskTitle, activeProject, priority, date, notes);
+    let newTask = addTask(taskTitle, activeProject.projectName, priority, date, notes);
 
     addTaskToProject(newTask);
     //
     // localStorage.setItem("activeProject.projectArray", JSON.stringify(activeProject.projectArray));
-    renderTasks(activeProject, activeProject.projectArray);
+    renderTasks(activeProject, allTasks);
     //I think this is important to have
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
+    console.log("All Tasks:", allTasks)
     console.log("Project Library:", projectLibrary)
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
-})
+});
 
 
 //add event listeners for all "project" class, when you click on it style changes to selected, removes selected from others, and 
@@ -349,5 +399,6 @@ let projectLibrary = getProjectLibrary();
 renderProjects(projectLibrary);
 
 console.log("Index Active Project:", activeProject, "-Index projectArray:", activeProject.projectArray)
-renderTasks(activeProject, activeProject.projectArray);
+// renderTasks(activeProject, activeProject.projectArray);
+renderTasks(activeProject, allTasks);
 //renderTodos(todoLibrary);
