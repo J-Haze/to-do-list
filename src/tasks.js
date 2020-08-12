@@ -148,10 +148,18 @@ function renderTasks(activeProject, allTasks){
     
             let dateDisp = document.createElement('input');
             dateDisp.type = 'date';
-            console.log('obj.date.value', obj.date.value)
             dateDisp.value = obj.date;
             dateDisp.classList.add("dateDisplay");
+            dateDisp.addEventListener("change", function(e){
+                obj.date = dateDisp.value;
+                localStorage.setItem("allTasks", JSON.stringify(allTasks));
+              }, false
+              );
+
+
             newElement.appendChild(dateDisp);
+
+
     
             let noteDisp = document.createElement('div');
             noteDisp.innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i>';
