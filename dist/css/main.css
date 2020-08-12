@@ -318,7 +318,22 @@ div {
     width: 508px;
 }
 
+.task{
 
+}
+
+.priorityDisplay{
+    display: flex;
+}
+
+.dateText{
+
+}
+
+.dateDisplay{
+    display: flex;
+    justify-content: flex-end;
+}
 
 
 /* New Project Modal */

@@ -141,11 +141,81 @@ function renderTasks(activeProject, allTasks){
             newElement.appendChild(taskTitle);
     
             let priorityDisp = document.createElement('div');
-            priorityDisp.innerHTML = obj.priority;
+            // priorityDisp.innerHTML = obj.priority;
+            let priorityValueInput = obj.priority;
+            console.log("priority value,", obj.priority)
             priorityDisp.classList.add(obj.priority);
             priorityDisp.classList.add("priorityDisplay");
             newElement.appendChild(priorityDisp);
-    
+
+            // let readElement = document.createElement('div');
+            // readElement.innerHTML = '';
+            // readElement.className = "read box";
+            // readValue = obj.readStatus
+            // console.log(readValue)
+            // card.appendChild(readElement);
+
+            //Create priority buttons for each Task
+            let lowPriority = document.createElement('div')
+            lowPriority.innerHTML = 'Low';
+            lowPriority.className = "toggle";
+            priorityDisp.appendChild(lowPriority);
+
+            let medPriority = document.createElement('div')
+            medPriority.innerHTML = 'Medium';
+            medPriority.className = "toggle";
+            priorityDisp.appendChild(medPriority);
+
+            let highPriority = document.createElement('div')
+            highPriority.innerHTML = 'High';
+            highPriority.className = "toggle";
+            priorityDisp.appendChild(highPriority);
+
+            //apply selection if the input priority value corresponds with div        
+            if (priorityValueInput == "low") {
+                lowPriority.classList.add("lowSelected");
+                medPriority.classList.remove("mediumSelected");
+                highPriority.classList.remove("highSelected");
+            };
+
+            if (priorityValueInput == "medium") {
+                lowPriority.classList.remove("lowSelected");
+                medPriority.classList.add("mediumSelected");
+                highPriority.classList.remove("highSelected");
+            };
+
+            if (priorityValueInput == "high") {
+                lowPriority.classList.remove("lowSelected");
+                medPriority.classList.remove("mediumSelected");
+                highPriority.classList.add("highSelected");
+            };
+
+            //event listeners
+            lowPriority.onclick = function() {
+                lowPriority.classList.add("lowSelected");
+                medPriority.classList.remove("mediumSelected");
+                highPriority.classList.remove("highSelected");
+                obj.priority = "low";
+                localStorage.setItem("allTasks", JSON.stringify(allTasks));
+            };
+
+            medPriority.onclick = function() {
+                lowPriority.classList.remove("lowSelected");
+                medPriority.classList.add("mediumSelected");
+                highPriority.classList.remove("highSelected");
+                obj.priority = "medium";
+                localStorage.setItem("allTasks", JSON.stringify(allTasks));
+                }
+
+            highPriority.onclick = function() {
+                lowPriority.classList.remove("lowSelected");
+                medPriority.classList.remove("mediumSelected");
+                highPriority.classList.add("highSelected");
+                obj.priority = "high";
+                localStorage.setItem("allTasks", JSON.stringify(allTasks));
+                }
+
+
             let dateText = document.createElement('div');
             dateText.innerHTML = "Due:"
             dateText.classList.add("dateText");
