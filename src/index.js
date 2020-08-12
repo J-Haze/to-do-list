@@ -1,10 +1,12 @@
 const { renderTasks } = require("./tasks");
 // import {renderTasks} from './tasks.js';
 
+// let formTask = document.getElementById("form-task");
 
+// let editTaskForm = document.createElement('textarea');
 
 //^^Where did that come from
-console.log("check webpack2")
+console.log("check webpack3")
 
 //Checks that Local Storage is available
 function storageAvailable(type) {
@@ -47,7 +49,7 @@ if (storageAvailable('localStorage')) {
 //Initialize project libarary
 function getProjectLibrary() {
     let projectLibrary = [];
-    storedLibrary = JSON.parse(localStorage.getItem("projectLibrary"));
+    let storedLibrary = JSON.parse(localStorage.getItem("projectLibrary"));
     if(storedLibrary.length > 0) { 
         projectLibrary = storedLibrary;
     }
@@ -87,7 +89,7 @@ return {
 }
 };
 
-allTasks = getAllTasks();
+let allTasks = getAllTasks();
 console.log("GetAllTasks:", allTasks)
 
 let allTasksTab = addProject("all", allTasks);
@@ -95,6 +97,8 @@ let allTasksTab = addProject("all", allTasks);
 
 // let edittedObject = "";
 let activeProject = allTasksTab;
+let editTaskBtn = document.getElementById("submit-task");
+let edittedTask = "";
 
 //Adds new project to the "projectLibrary"
 function addProjectToLibrary(addProject) {
@@ -150,6 +154,12 @@ let projectsContent = document.getElementById("projects-content");
 function clearProjectLibrary(){
     projectsContent.innerHTML = '';
 }
+
+
+
+
+
+// renderTaskForm();
 
 function renderProjects(projectLibrary){
     clearProjectLibrary();
@@ -219,7 +229,6 @@ function renderProjects(projectLibrary){
             edit.id = project;
             edittedProject = obj.projectName;
             // console.log(obj.projectName)
-            // console.log("edittedProject", edittedProject)
 
             return edittedProject = edittedProject
             // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
@@ -302,11 +311,12 @@ window.onclick = function(event) {
 }
 
 editProjectBtn.addEventListener('click', () => {
+
     let edittedValue = document.getElementById("edit-project").value;
     if (edittedValue == ""){
         return
     }
-    
+    console.log('edittedproject outside', edittedProject)
     let changeProject = document.getElementById(edittedProject);
     let projectID = changeProject.id;
 
@@ -327,8 +337,7 @@ editProjectBtn.addEventListener('click', () => {
 
     for (task in allTasks){
         console.log('task.projectname,', allTasks[task].project)
-        // console.log('obj id', edittedProject)
-        // console.log('project', project)
+
         if (allTasks[task].project == projectID){
             console.log('match')
             allTasks[task].project = edittedValue
@@ -395,6 +404,22 @@ addTaskBtn.addEventListener('click', () => {
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
 });
 
+// let modalTask = document.getElementById("modal-task");
+// // let editTaskBtn = document.getElementById("submit-task");
+// let taskSpan = document.getElementsByClassName("span-task")[0];
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //add event listeners for all "project" class, when you click on it style changes to selected, removes selected from others, and 
 
@@ -413,3 +438,5 @@ renderProjects(projectLibrary);
 // renderTasks(activeProject, activeProject.projectArray);
 renderTasks(activeProject, allTasks);
 //renderTodos(todoLibrary);
+
+// export{renderTaskForm}

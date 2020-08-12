@@ -161,7 +161,7 @@ div {
 #new-task{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 530px;
     min-width: 450px;
     margin-top: 10px;
     margin-left: 5px;
@@ -217,7 +217,7 @@ div {
     margin-left: 5px;
     margin-right: 5px;
     border: 1px solid #767676;
-    width: 110px;
+    width: 140px;
     align-items: center;
     justify-content: center;
 }
@@ -297,7 +297,8 @@ div {
 
 #notes-input{
     margin-top: 5px;
-    width: 478px;
+    margin-left: 22px;
+    width: 528px;
     line-height: 20px;
     height: 66px;
     overflow-y: auto;
@@ -314,17 +315,8 @@ div {
     border: solid 1px black;
     margin-top: 5px;
     margin-left: 26px;
-    width: 478px;
+    width: 508px;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -395,7 +387,83 @@ div {
 
 
 
+/* Edit Task Modal */
+#modal-task{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
 
+#modal-task-content{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 600px;
+    /* height: 1000px; */
+  }
+
+  #form-task{
+      display: flex;
+      flex-direction: column;
+      /* width: 1000px;
+      height: 1000px; */
+  }
+
+  #edit-task{
+      width: 500px;
+      margin-bottom: 7px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0px;
+      height: 200px;
+      /* overflow: auto; */
+  }
+
+  /* #titleForm{
+      margin-top: 0px;
+  } */
+
+  #submit-task{
+      width: 100px;
+      min-width: 100px;
+      margin-left: 20px;
+      margin-right: auto;
+  }
+  
+  .span-task{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .span-task:hover, .span-task:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+.noteDisplay{
+    /* width: 10px;
+    height: 10px; */
+    margin-left: auto;
+    margin-right: 5px;
+    justify-content: flex-end;
+}
+
+.noteDisplay:hover{
+    font-weight: bold;
+    cursor: pointer;
+}
 
 
 
