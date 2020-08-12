@@ -324,7 +324,7 @@ addTaskBtn.addEventListener('click', () => {
     let priority = priorityValue;
 
     //Will need to reformat how it gets data from "date"
-    let date = document.getElementById("date").innerHTML;
+    let date = document.getElementById("date").value;
     let notes = document.getElementById("notes-input").value;
 
     //Make sure form isn't empty

@@ -122,6 +122,8 @@ function renderTasks(activeProject, allTasks){
         return
     };
 
+    console.log("allTasks:", allTasks)
+
     for (let task in allTasks){
         let obj = allTasks[task];
 
@@ -144,8 +146,10 @@ function renderTasks(activeProject, allTasks){
             priorityDisp.classList.add("priorityDisplay");
             newElement.appendChild(priorityDisp);
     
-            let dateDisp = document.createElement('div');
-            dateDisp.innerHTML = obj.date;
+            let dateDisp = document.createElement('input');
+            dateDisp.type = 'date';
+            console.log('obj.date.value', obj.date.value)
+            dateDisp.value = obj.date;
             dateDisp.classList.add("dateDisplay");
             newElement.appendChild(dateDisp);
     
