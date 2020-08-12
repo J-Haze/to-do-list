@@ -68,15 +68,17 @@ function renderTaskForm (editTaskFormValue, edittedTask, allTasks) {
     }
 
     editTaskBtn.addEventListener('click', () => {
+        console.log("test editTaskBtn")
         // edittedTask = renderTasks(activeProject, allTasks);
         // console.log("Returned edittedTask:", edittedTask)
-        let edittedValueTask = document.getElementById("edit-task").value;
+        // let edittedValueTask = document.getElementById("edit-task").value;
+        let editTaskFormValue = document.getElementById("edit-task").value;
         // let newEditTask = edittedTask;
         let changeTask = document.getElementById(edittedTask);
         let taskID = changeTask.id;
         
-        console.log("EDITTEDVALUETASK", edittedValueTask)
-        console.log("tasksArr!!!", allTasks)
+        // console.log("EDITTEDVALUETASK", edittedValueTask)
+        // console.log("tasksArr!!!", allTasks)
     
         for (let i in allTasks){
             let ob = allTasks[i];
@@ -85,14 +87,15 @@ function renderTaskForm (editTaskFormValue, edittedTask, allTasks) {
             if (ob.taskName == taskID){
                 console.log("match between i and taskID")
                 // obj.innerHTML = edittedValue;
-                ob.notes = edittedValueTask;
-                console.log("Stored edittedValue:", edittedValueTask)
+                ob.notes = editTaskFormValue;
+                console.log("Stored edittedValue:", editTaskFormValue)
             }
         }
     
-        console.log("EdittedValueTask:", edittedValueTask)
+        console.log("EdittedTaskValueForm:", editTaskFormValue)
+        console.log("EDITTEDTASK", edittedTask)
         console.log("tasksArr!!!!!", allTasks)
-        localStorage.setItem("allTasks", JSON.stringify(allTasks));
+        // localStorage.setItem("allTasks", JSON.stringify(allTasks));
     
         renderTaskForm(editTaskFormValue, edittedTask, allTasks)
         
@@ -178,13 +181,15 @@ function renderTasks(activeProject, allTasks){
             noteDisp.onclick = function(){
                 // editTaskForm.defaultValue = noteDisp.text;
                 editTaskFormValue = obj.notes;
+                edittedTask = obj.taskName;
+                //!!EdittedTask hasn't been defined yet
                 renderTaskForm(editTaskFormValue, edittedTask, allTasks);
                 
                 modalTask.style.display = "block";
                 // noteDisp.id = task;
                 console.log("obj.taskName:", obj.taskName)
 
-                edittedTask = obj.taskName;
+                // edittedTask = obj.taskName;
                 console.log("EDITTED TASK:", edittedTask)
                 
                 console.log("all task here2", allTasks)
