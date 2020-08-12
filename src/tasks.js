@@ -146,6 +146,11 @@ function renderTasks(activeProject, allTasks){
             priorityDisp.classList.add("priorityDisplay");
             newElement.appendChild(priorityDisp);
     
+            let dateText = document.createElement('div');
+            dateText.innerHTML = "Due:"
+            dateText.classList.add("dateText");
+            newElement.appendChild(dateText);
+            
             let dateDisp = document.createElement('input');
             dateDisp.type = 'date';
             dateDisp.value = obj.date;
