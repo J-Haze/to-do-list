@@ -1,11 +1,5 @@
 const { renderTasks } = require("./tasks");
-// import {renderTasks} from './tasks.js';
 
-// let formTask = document.getElementById("form-task");
-
-// let editTaskForm = document.createElement('textarea');
-
-//^^Where did that come from
 console.log("check webpack3")
 
 //Checks that Local Storage is available
@@ -41,9 +35,6 @@ if (storageAvailable('localStorage')) {
   else {
     alert("Local Storage Unavailable");
   }
-
-
-// import {renderTasks} from './tasks';
 
 
 //Initialize project libarary
@@ -90,33 +81,24 @@ return {
 };
 
 let allTasks = getAllTasks();
-console.log("GetAllTasks:", allTasks)
 
 let allTasksTab = addProject("all", allTasks);
 
-
 // let edittedObject = "";
 let activeProject = allTasksTab;
-let editTaskBtn = document.getElementById("submit-task");
-let edittedTask = "";
 
 //Adds new project to the "projectLibrary"
 function addProjectToLibrary(addProject) {
     projectLibrary.push(addProject);
 }
 
-
 //Adds new Task to Project
 function addTaskToProject(newTask) {
-    // console.log("acitve", activeProject)
-    // console.log("here", activeProject.projectArray)
-    // console.log("New task:", newTask)
     if (activeProject.projectArray == undefined){
         activeProject.projectArray = newTask;
         allTasks = newTask;
     }
     activeProject.projectArray.push(newTask);
-    // console.log("All Tasks Here:", allTasks)
     allTasks.push(newTask);
 }
 
@@ -154,12 +136,6 @@ let projectsContent = document.getElementById("projects-content");
 function clearProjectLibrary(){
     projectsContent.innerHTML = '';
 }
-
-
-
-
-
-// renderTaskForm();
 
 function renderProjects(projectLibrary){
     clearProjectLibrary();
@@ -294,7 +270,6 @@ addProjectBtn.addEventListener('click', () => {
     renderProjects(projectLibrary);
 })
 
-
 //Add Project Modal
 let modalProject = document.getElementById("modal-project");
 let editProjectBtn = document.getElementById("submit-project");
@@ -316,36 +291,23 @@ editProjectBtn.addEventListener('click', () => {
     if (edittedValue == ""){
         return
     }
-    console.log('edittedproject outside', edittedProject)
+
     let changeProject = document.getElementById(edittedProject);
     let projectID = changeProject.id;
 
 
     for (project in projectLibrary){
         let obj = projectLibrary[project];
-        // console.log(obj.projectName)
         if (obj.projectName == projectID){
-            // console.log("match")
-            // obj.innerHTML = edittedValue;
             obj.projectName = edittedValue;
-            // obj.id = edittedValue;
         }
     }
-    
-        console.log("project ID:", projectID)
-        console.log("edittedValue:,", edittedValue)
 
     for (task in allTasks){
-        console.log('task.projectname,', allTasks[task].project)
-
         if (allTasks[task].project == projectID){
-            console.log('match')
             allTasks[task].project = edittedValue
         }}
 
-
-
-    // console.log(projectLibrary)
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     renderTasks(activeProject, allTasks);
@@ -353,7 +315,6 @@ editProjectBtn.addEventListener('click', () => {
     modalProject.style.display = "none";
 });
 
-//Event Listener for "addTaskBtn"
 
 let addTaskBtn = document.getElementById("addTaskBtn");
 
@@ -361,12 +322,10 @@ addTaskBtn.addEventListener('click', () => {
     //Get task from the form
     let taskTitle = document.getElementById("new-task-form").value;
     let priority = priorityValue;
+
     //Will need to reformat how it gets data from "date"
     let date = document.getElementById("date").innerHTML;
     let notes = document.getElementById("notes-input").value;
-
-    // if (.length < 1){return};
-    //Do I need a length check there? ^^
 
     //Make sure form isn't empty
     if (taskTitle == ""){
@@ -377,66 +336,25 @@ addTaskBtn.addEventListener('click', () => {
         return
     }
 
-    //check for duplicate names
-    // for (let task in activeProject.projectArray){
-    //     let obj = activeProject.projectArray[task];
-    //     if (obj.taskName == taskTitle){
-    //         taskTitle = `${taskTitle}.1`;
-    //     }
-    // }
     for (task in allTasks){
         if (task == taskTitle){
             taskTitle = `${taskTitle}.1`;
         }
     }
     
-    // let newProjectArray = [];
     let newTask = addTask(taskTitle, activeProject.projectName, priority, date, notes);
 
     addTaskToProject(newTask);
-    //
-    // localStorage.setItem("activeProject.projectArray", JSON.stringify(activeProject.projectArray));
     renderTasks(activeProject, allTasks);
-    //I think this is important to have
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    // console.log("All Tasks:", allTasks)
-    // console.log("Project Library:", projectLibrary)
     localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
 });
 
-// let modalTask = document.getElementById("modal-task");
-// // let editTaskBtn = document.getElementById("submit-task");
-// let taskSpan = document.getElementsByClassName("span-task")[0];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//add event listeners for all "project" class, when you click on it style changes to selected, removes selected from others, and 
-
-
-//need an array of all existing "projects" as objects
-
-
-//will need an array of all existing to-do's as objects
 
 let projectLibrary = getProjectLibrary();
 
-//render
 renderProjects(projectLibrary);
-
-// console.log("Index Active Project:", activeProject, "-Index projectArray:", activeProject.projectArray)
-// renderTasks(activeProject, activeProject.projectArray);
 renderTasks(activeProject, allTasks);
-//renderTodos(todoLibrary);
 
-// export{renderTaskForm}
+
+
