@@ -355,6 +355,7 @@ div {
     font-size: 1em;
     padding-left: .5px;
     color: rgba(160, 160, 160, 0.7);
+    cursor: pointer;
 }
 
 .medBox{
@@ -376,6 +377,7 @@ div {
     font-size: 1em;
     padding-left: .5px;
     color: rgba(160, 160, 160, 0.7);
+    cursor: pointer;
 }
 
 .highBox{
@@ -397,6 +399,7 @@ div {
     font-size: 1em;
     padding-left: .5px;
     color: rgba(160, 160, 160, 0.7);
+    cursor: pointer;
 }
 
 .checked{
@@ -414,6 +417,10 @@ div {
     font-weight: bold;
     font-size: 1em;
     padding-left: .5px;
+}
+
+.checked:hover{
+    cursor: pointer;
 }
 
 .priorityDisplay{
