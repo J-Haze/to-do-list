@@ -342,6 +342,19 @@ div {
     margin-left: 3px;
     margin-right: 5px;
     border: 2px solid var(--green);
+    color: rgba(160, 160, 160, 0);
+}
+
+.lowBox:hover{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 1em;
+    padding-left: .5px;
+    color: rgba(160, 160, 160, 0.7);
 }
 
 .medBox{
@@ -350,6 +363,19 @@ div {
     margin-left: 3px;
     margin-right: 5px;
     border: 2px solid var(--yellow);
+    color: rgba(160, 160, 160, 0);
+}
+
+.medBox:hover{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 1em;
+    padding-left: .5px;
+    color: rgba(160, 160, 160, 0.7);
 }
 
 .highBox{
@@ -358,6 +384,19 @@ div {
     margin-left: 3px;
     margin-right: 5px;
     border: 2px solid var(--red);
+    color: rgba(160, 160, 160, 0);
+}
+
+.highBox:hover{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 1em;
+    padding-left: .5px;
+    color: rgba(160, 160, 160, 0.7);
 }
 
 .checked{
@@ -367,6 +406,14 @@ div {
     margin-left: 3px;
     margin-right: 5px;
     border: 2px solid var(--purple);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 15px;
+    font-weight: bold;
+    font-size: 1em;
+    padding-left: .5px;
 }
 
 .priorityDisplay{

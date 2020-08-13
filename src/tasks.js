@@ -135,17 +135,18 @@ function renderTasks(activeProject, allTasks){
             todoContent.appendChild(newElement);
     
             let uncheckedBox = document.createElement('div');
+            uncheckedBox.innerHTML = 'X';
             uncheckedBox.className = 'uncheckedBox';
             newElement.appendChild(uncheckedBox);
-            let boxValueInput = obj.done;
+            // let boxValueInput = obj.done;
 
-            if (boxValueInput == "yes"){
+            if (obj.done == "yes"){
                 uncheckedBox.className = "checked";
             }
 
             uncheckedBox.addEventListener('click', () => {
                 console.log('checked')
-                if (boxValueInput != "yes"){
+                if (obj.done != "yes"){
                     uncheckedBox.className = "checked";
                     obj.done = "yes";
                     localStorage.setItem("allTasks", JSON.stringify(allTasks));
@@ -175,9 +176,11 @@ function renderTasks(activeProject, allTasks){
                     };
 
                     obj.done = "no";
+                    console.log('Ending obj.done', obj.done)
                     localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
-            })
+                console.log("allTasks End:", allTasks)
+            });
 
 
             // let checkedCircle = document.createElement('div');
@@ -244,7 +247,7 @@ function renderTasks(activeProject, allTasks){
                 medPriority.classList.remove("mediumSelected");
                 highPriority.classList.remove("highSelected");
 
-                if (boxValueInput != "yes"){
+                if (obj.done != "yes"){
                 uncheckedBox.className = "lowBox";
                 }
             };
@@ -254,7 +257,7 @@ function renderTasks(activeProject, allTasks){
                 medPriority.classList.add("mediumSelected");
                 highPriority.classList.remove("highSelected");
 
-                if (boxValueInput != "yes"){
+                if (obj.done != "yes"){
                 uncheckedBox.className = "medBox";
                 }
             };
@@ -264,7 +267,7 @@ function renderTasks(activeProject, allTasks){
                 medPriority.classList.remove("mediumSelected");
                 highPriority.classList.add("highSelected");
 
-                if (boxValueInput != "yes"){
+                if (obj.done != "yes"){
                 uncheckedBox.className = "highBox";
                 }
             };
@@ -276,6 +279,9 @@ function renderTasks(activeProject, allTasks){
                 highPriority.classList.remove("highSelected");
                 obj.priority = "low";
                 uncheckedBox.className = "lowBox";
+                if (obj.done == "yes"){
+                    obj.done = "no";
+                    }
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
             };
 
@@ -285,6 +291,9 @@ function renderTasks(activeProject, allTasks){
                 highPriority.classList.remove("highSelected");
                 obj.priority = "medium";
                 uncheckedBox.className = "medBox";
+                if (obj.done == "yes"){
+                    obj.done = "no";
+                    }
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
 
@@ -294,6 +303,9 @@ function renderTasks(activeProject, allTasks){
                 highPriority.classList.add("highSelected");
                 obj.priority = "high";
                 uncheckedBox.className = "highBox";
+                if (obj.done == "yes"){
+                    obj.done = "no";
+                    }
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
 
