@@ -334,7 +334,39 @@ div {
     height: 15px;
     margin-left: 3px;
     margin-right: 5px;
-    border: 1px solid green;
+}
+
+.lowBox{
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    margin-right: 5px;
+    border: 2px solid var(--green);
+}
+
+.medBox{
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    margin-right: 5px;
+    border: 2px solid var(--yellow);
+}
+
+.highBox{
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    margin-right: 5px;
+    border: 2px solid var(--red);
+}
+
+.checked{
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    margin-right: 5px;
+    border: 2px solid var(--purple);
 }
 
 .priorityDisplay{

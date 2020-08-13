@@ -137,8 +137,47 @@ function renderTasks(activeProject, allTasks){
             let uncheckedBox = document.createElement('div');
             uncheckedBox.className = 'uncheckedBox';
             newElement.appendChild(uncheckedBox);
-            let boxValueInput = obj.priority;
+            let boxValueInput = obj.done;
 
+            if (boxValueInput == "yes"){
+                uncheckedBox.className = "checked";
+            }
+
+            uncheckedBox.addEventListener('click', () => {
+                console.log('checked')
+                if (boxValueInput != "yes"){
+                    uncheckedBox.className = "checked";
+                    obj.done = "yes";
+                    localStorage.setItem("allTasks", JSON.stringify(allTasks));
+                } else{
+                    if (priorityValueInput == "low") {
+                        lowPriority.classList.add("lowSelected");
+                        medPriority.classList.remove("mediumSelected");
+                        highPriority.classList.remove("highSelected");
+        
+                        uncheckedBox.className = "lowBox";
+                    };
+        
+                    if (priorityValueInput == "medium") {
+                        lowPriority.classList.remove("lowSelected");
+                        medPriority.classList.add("mediumSelected");
+                        highPriority.classList.remove("highSelected");
+        
+                        uncheckedBox.className = "medBox";
+                    };
+        
+                    if (priorityValueInput == "high") {
+                        lowPriority.classList.remove("lowSelected");
+                        medPriority.classList.remove("mediumSelected");
+                        highPriority.classList.add("highSelected");
+        
+                        uncheckedBox.className = "highBox";
+                    };
+
+                    obj.done = "no";
+                    localStorage.setItem("allTasks", JSON.stringify(allTasks));
+                }
+            })
 
 
             // let checkedCircle = document.createElement('div');
@@ -204,18 +243,30 @@ function renderTasks(activeProject, allTasks){
                 lowPriority.classList.add("lowSelected");
                 medPriority.classList.remove("mediumSelected");
                 highPriority.classList.remove("highSelected");
+
+                if (boxValueInput != "yes"){
+                uncheckedBox.className = "lowBox";
+                }
             };
 
             if (priorityValueInput == "medium") {
                 lowPriority.classList.remove("lowSelected");
                 medPriority.classList.add("mediumSelected");
                 highPriority.classList.remove("highSelected");
+
+                if (boxValueInput != "yes"){
+                uncheckedBox.className = "medBox";
+                }
             };
 
             if (priorityValueInput == "high") {
                 lowPriority.classList.remove("lowSelected");
                 medPriority.classList.remove("mediumSelected");
                 highPriority.classList.add("highSelected");
+
+                if (boxValueInput != "yes"){
+                uncheckedBox.className = "highBox";
+                }
             };
 
             //event listeners
@@ -224,6 +275,7 @@ function renderTasks(activeProject, allTasks){
                 medPriority.classList.remove("mediumSelected");
                 highPriority.classList.remove("highSelected");
                 obj.priority = "low";
+                uncheckedBox.className = "lowBox";
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
             };
 
@@ -232,6 +284,7 @@ function renderTasks(activeProject, allTasks){
                 medPriority.classList.add("mediumSelected");
                 highPriority.classList.remove("highSelected");
                 obj.priority = "medium";
+                uncheckedBox.className = "medBox";
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
 
@@ -240,6 +293,7 @@ function renderTasks(activeProject, allTasks){
                 medPriority.classList.remove("mediumSelected");
                 highPriority.classList.add("highSelected");
                 obj.priority = "high";
+                uncheckedBox.className = "highBox";
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
 

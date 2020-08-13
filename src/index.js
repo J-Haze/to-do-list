@@ -70,13 +70,14 @@ const addProject = (projectName, projectArray) => {
   };
 
 //Factory Function to create Task
-const addTask = (taskName, project, priority, date, notes) => {
+const addTask = (taskName, project, priority, date, notes, done) => {
 return { 
     taskName: taskName,
     project: project,
     priority: priority,
     date: date,
-    notes: notes
+    notes: notes,
+    done: done
 }
 };
 
