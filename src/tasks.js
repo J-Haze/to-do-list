@@ -134,12 +134,40 @@ function renderTasks(activeProject, allTasks){
             newElement.id = obj.taskName;
             todoContent.appendChild(newElement);
     
+            let uncheckedBox = document.createElement('div');
+            uncheckedBox.className = 'uncheckedBox';
+            newElement.appendChild(uncheckedBox);
+            let boxValueInput = obj.priority;
+
+
+
+            // let checkedCircle = document.createElement('div');
+            
             let taskTitle = document.createElement('div');
             taskTitle.innerHTML = obj.taskName;
             taskTitle.classList.add(obj.taskName);
             taskTitle.classList.add("task");
             newElement.appendChild(taskTitle);
     
+
+            let noteDisp = document.createElement('div');
+            noteDisp.innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i>';
+            noteDisp.classList.add("noteDisplay");
+            noteDisp.id = task;
+            noteDisp.title = obj.taskName
+            noteDisp.text = obj.notes;
+
+            noteDisp.onclick = function(){
+                editTaskFormValue = obj.notes;
+                edittedTask = obj.taskName;
+                renderTaskForm(editTaskFormValue, edittedTask, allTasks);
+                
+                modalTask.style.display = "block";
+                return edittedTask = edittedTask
+            }
+
+            newElement.appendChild(noteDisp);
+
             let priorityDisp = document.createElement('div');
             // priorityDisp.innerHTML = obj.priority;
             let priorityValueInput = obj.priority;
@@ -215,11 +243,6 @@ function renderTasks(activeProject, allTasks){
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
 
-
-            let dateText = document.createElement('div');
-            dateText.innerHTML = "Due:"
-            dateText.classList.add("dateText");
-            newElement.appendChild(dateText);
             
             let dateDisp = document.createElement('input');
             dateDisp.type = 'date';
@@ -233,26 +256,6 @@ function renderTasks(activeProject, allTasks){
 
 
             newElement.appendChild(dateDisp);
-
-
-    
-            let noteDisp = document.createElement('div');
-            noteDisp.innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i>';
-            noteDisp.classList.add("noteDisplay");
-            noteDisp.id = task;
-            noteDisp.title = obj.taskName
-            noteDisp.text = obj.notes;
-
-            noteDisp.onclick = function(){
-                editTaskFormValue = obj.notes;
-                edittedTask = obj.taskName;
-                renderTaskForm(editTaskFormValue, edittedTask, allTasks);
-                
-                modalTask.style.display = "block";
-                return edittedTask = edittedTask
-            }
-
-            newElement.appendChild(noteDisp);
 
             let closeTask = document.createElement('div');
             closeTask.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';

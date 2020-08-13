@@ -155,6 +155,7 @@ div {
     flex-direction: column;
     /* align-items: center; */
     border-left: var(--purple) solid 2px;
+    padding-left: 10px;
     height: 100vh;
 }
 
@@ -165,6 +166,7 @@ div {
     min-width: 450px;
     margin-top: 10px;
     margin-left: 5px;
+    margin-bottom: 20px;
 }
 
 #row-one{
@@ -307,43 +309,53 @@ div {
 
 #todo-content{
     height: 100%;
-    border: black 1px solid;
+    /* border: black 1px solid; */
 }
 
 .box{
     display: flex;
-    border: solid 1px black;
-    margin-top: 5px;
-    margin-left: 26px;
-    width: 508px;
-    height: 30px;
+    /* border: solid 1px black; */
+    border-bottom: solid 1px var(--purple);
+    /* margin-top: 5px; */
+    /* margin-left: 26px; */
+    margin-left: 5px;
+    width: 533px;
+    height: 40px;
     padding: 5px 0;
     align-items: center;
 }
 
 .task{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+}
+
+.uncheckedBox{
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    margin-right: 5px;
+    border: 1px solid green;
 }
 
 .priorityDisplay{
-    margin-left: auto;
+    /* margin-left: auto; */
     display: flex;
     justify-content: flex-end;
     border: 1px solid black;
 }
 
-.dateText{
+/* .dateText{
     margin-left: 5px;
-    border: 1px solid black;
     justify-content: flex-end;
-}
+} */
 
 .dateDisplay{
-    margin-left: 2px;
+    margin-left: 5px;
+    margin-right: 2px;
     /* margin-right: 5px; */
     justify-content: flex-end;
-    height: 25px;
-    border: 1px solid black;
+    height: 20px;
+    /* border: 1px solid black; */
     width: 140px;
 }
 
@@ -441,6 +453,11 @@ div {
     /* height: 1000px; */
   }
 
+  #modal-task-header{
+      margin-left: 20px;
+  }
+
+
   #form-task{
       display: flex;
       flex-direction: column;
@@ -486,7 +503,8 @@ div {
 .noteDisplay{
     /* width: 10px;
     height: 10px; */
-    margin-left: 20px; 
+    /* margin-left: 20px;  */
+    margin-left: auto;
     margin-right: 5px;
     justify-content: flex-end;
 }
