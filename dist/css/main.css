@@ -316,23 +316,39 @@ div {
     margin-top: 5px;
     margin-left: 26px;
     width: 508px;
+    height: 30px;
+    padding: 5px 0;
+    align-items: center;
 }
 
 .task{
-
+    border: 1px solid black;
 }
 
 .priorityDisplay{
+    margin-left: auto;
     display: flex;
+    justify-content: flex-end;
+    border: 1px solid black;
 }
 
 .dateText{
-
+    margin-left: 5px;
+    border: 1px solid black;
+    justify-content: flex-end;
 }
 
 .dateDisplay{
-    display: flex;
+    margin-left: 2px;
+    /* margin-right: 5px; */
     justify-content: flex-end;
+    height: 25px;
+    border: 1px solid black;
+    width: 140px;
+}
+
+.dateDisplay:hover{
+    cursor: pointer;
 }
 
 
@@ -470,7 +486,7 @@ div {
 .noteDisplay{
     /* width: 10px;
     height: 10px; */
-    margin-left: auto;
+    margin-left: 20px; 
     margin-right: 5px;
     justify-content: flex-end;
 }
