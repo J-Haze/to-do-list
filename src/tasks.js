@@ -1,8 +1,3 @@
-// import { compareAsc, format } from 'date-fns'
-
-// format(new Date(2014, 1, 11), 'yyyy-MM-dd')
-
-
 let edittedTask = "";
 let editTaskFormValue = "";
 
@@ -31,7 +26,6 @@ function renderTaskForm (editTaskFormValue, edittedTask, allTasks) {
     }
     clearTaskForm()
 
-    // editTaskForm.type = "text";
     editTaskForm.id = "edit-task";
     editTaskForm.className = "form-input-task";
     editTaskForm.value = editTaskFormValue
@@ -45,57 +39,29 @@ function renderTaskForm (editTaskFormValue, edittedTask, allTasks) {
 
     taskSpan.onclick = function() {
         modalTask.style.display = "none";
-        // renderTasks(activeProject, allTasks)
-        // renderTaskForm();
     }
     
     window.onclick = function(event) {
       if (event.target == modalTask) {
         modalTask.style.display = "none";
-        // renderTasks(activeProject, allTasks);
-        // renderTaskForm();
       }
     }
 
     editTaskBtn.addEventListener('click', () => {
-        console.log("test editTaskBtn")
-        // edittedTask = renderTasks(activeProject, allTasks);
-        // console.log("Returned edittedTask:", edittedTask)
-        // let edittedValueTask = document.getElementById("edit-task").value;
         let editTaskFormValue = document.getElementById("edit-task").value;
-        // let newEditTask = edittedTask;
         let changeTask = document.getElementById(edittedTask);
         let taskID = changeTask.id;
-        
-        // console.log("EDITTEDVALUETASK", edittedValueTask)
-        // console.log("tasksArr!!!", allTasks)
     
         for (let i in allTasks){
             let ob = allTasks[i];
-            // console.log(`i: ${i} taskID: ${taskID}`)
-            console.log(`ob.taskName: ${ob.taskName} taskID: ${taskID}`)
+
             if (ob.taskName == taskID){
-                console.log("match between i and taskID")
-                // obj.innerHTML = edittedValue;
                 ob.notes = editTaskFormValue;
-                console.log("Stored edittedValue:", editTaskFormValue)
             }
         }
-    
-        console.log("EdittedTaskValueForm:", editTaskFormValue)
-        console.log("EDITTEDTASK", edittedTask)
-        console.log("tasksArr!!!!!", allTasks)
-        // localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    
+        
         renderTaskForm(editTaskFormValue, edittedTask, allTasks)
-        
-        // obj.notes = edittedValueTask;
-    
-        // console.log(projectLibrary)
         localStorage.setItem("allTasks", JSON.stringify(allTasks));
-        // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
-        
-        // renderProjects(projectLibrary)
         modalTask.style.display = "none";
     }); 
 
@@ -113,16 +79,12 @@ function renderTasks(activeProject, allTasks){
     clearTasks();
 
     if(todoContent.length === 0) {
-        console.log("todoContent length equals zero!")
         return
       };
 
     if(allTasks == null){
-        console.log("tasksArr equals null!")
         return
     };
-
-    console.log("allTasks:", allTasks)
 
     for (let task in allTasks){
         let obj = allTasks[task];
@@ -138,16 +100,22 @@ function renderTasks(activeProject, allTasks){
             uncheckedBox.innerHTML = 'X';
             uncheckedBox.className = 'uncheckedBox';
             newElement.appendChild(uncheckedBox);
-            // let boxValueInput = obj.done;
+
+            let taskTitle = document.createElement('div');
+            taskTitle.innerHTML = obj.taskName;
+            taskTitle.classList.add(obj.taskName.replace(/\s/g , "-"));
+            taskTitle.classList.add("task");
+            newElement.appendChild(taskTitle);
 
             if (obj.done == "yes"){
                 uncheckedBox.className = "checked";
+                taskTitle.classList.add("strikethrough");
             }
 
             uncheckedBox.addEventListener('click', () => {
-                console.log('checked')
                 if (obj.done != "yes"){
                     uncheckedBox.className = "checked";
+                    taskTitle.classList.add("strikethrough");
                     obj.done = "yes";
                     localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 } else{
@@ -157,6 +125,7 @@ function renderTasks(activeProject, allTasks){
                         highPriority.classList.remove("highSelected");
         
                         uncheckedBox.className = "lowBox";
+                        taskTitle.classList.remove("strikethrough");
                     };
         
                     if (priorityValueInput == "medium") {
@@ -165,6 +134,7 @@ function renderTasks(activeProject, allTasks){
                         highPriority.classList.remove("highSelected");
         
                         uncheckedBox.className = "medBox";
+                        taskTitle.classList.remove("strikethrough");
                     };
         
                     if (priorityValueInput == "high") {
@@ -173,24 +143,13 @@ function renderTasks(activeProject, allTasks){
                         highPriority.classList.add("highSelected");
         
                         uncheckedBox.className = "highBox";
+                        taskTitle.classList.remove("strikethrough");
                     };
 
                     obj.done = "no";
-                    console.log('Ending obj.done', obj.done)
                     localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
-                console.log("allTasks End:", allTasks)
             });
-
-
-            // let checkedCircle = document.createElement('div');
-            
-            let taskTitle = document.createElement('div');
-            taskTitle.innerHTML = obj.taskName;
-            taskTitle.classList.add(obj.taskName);
-            taskTitle.classList.add("task");
-            newElement.appendChild(taskTitle);
-    
 
             let noteDisp = document.createElement('div');
             noteDisp.innerHTML = '<i class="fa fa-info-circle" aria-hidden="true"></i>';
@@ -211,19 +170,10 @@ function renderTasks(activeProject, allTasks){
             newElement.appendChild(noteDisp);
 
             let priorityDisp = document.createElement('div');
-            // priorityDisp.innerHTML = obj.priority;
             let priorityValueInput = obj.priority;
-            console.log("priority value,", obj.priority)
             priorityDisp.classList.add(obj.priority);
             priorityDisp.classList.add("priorityDisplay");
             newElement.appendChild(priorityDisp);
-
-            // let readElement = document.createElement('div');
-            // readElement.innerHTML = '';
-            // readElement.className = "read box";
-            // readValue = obj.readStatus
-            // console.log(readValue)
-            // card.appendChild(readElement);
 
             //Create priority buttons for each Task
             let lowPriority = document.createElement('div')
@@ -249,6 +199,7 @@ function renderTasks(activeProject, allTasks){
 
                 if (obj.done != "yes"){
                 uncheckedBox.className = "lowBox";
+                taskTitle.classList.remove("strikethrough");
                 }
             };
 
@@ -259,6 +210,7 @@ function renderTasks(activeProject, allTasks){
 
                 if (obj.done != "yes"){
                 uncheckedBox.className = "medBox";
+                taskTitle.classList.remove("strikethrough");
                 }
             };
 
@@ -269,6 +221,7 @@ function renderTasks(activeProject, allTasks){
 
                 if (obj.done != "yes"){
                 uncheckedBox.className = "highBox";
+                taskTitle.classList.remove("strikethrough");
                 }
             };
 
@@ -279,6 +232,7 @@ function renderTasks(activeProject, allTasks){
                 highPriority.classList.remove("highSelected");
                 obj.priority = "low";
                 uncheckedBox.className = "lowBox";
+                taskTitle.classList.remove("strikethrough");
                 if (obj.done == "yes"){
                     obj.done = "no";
                     }
@@ -291,6 +245,7 @@ function renderTasks(activeProject, allTasks){
                 highPriority.classList.remove("highSelected");
                 obj.priority = "medium";
                 uncheckedBox.className = "medBox";
+                taskTitle.classList.remove("strikethrough");
                 if (obj.done == "yes"){
                     obj.done = "no";
                     }
@@ -303,12 +258,12 @@ function renderTasks(activeProject, allTasks){
                 highPriority.classList.add("highSelected");
                 obj.priority = "high";
                 uncheckedBox.className = "highBox";
+                taskTitle.classList.remove("strikethrough");
                 if (obj.done == "yes"){
                     obj.done = "no";
                     }
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
                 }
-
             
             let dateDisp = document.createElement('input');
             dateDisp.type = 'date';
@@ -319,7 +274,6 @@ function renderTasks(activeProject, allTasks){
                 localStorage.setItem("allTasks", JSON.stringify(allTasks));
               }, false
               );
-
 
             newElement.appendChild(dateDisp);
 
@@ -338,7 +292,6 @@ function renderTasks(activeProject, allTasks){
             newElement.appendChild(closeTask);      
         }
     };
-
     return edittedTask
 };
 

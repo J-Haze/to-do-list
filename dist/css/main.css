@@ -1,21 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 :root{
-    /* --purple: rgb(186,85,211); */
     --purple: hsl(288, 58.9%, 58.0%);
-    --green: rgb(97, 255, 97);
-    --yellow: rgb(248, 186, 70);
+    --green: rgb(3, 228, 3);
+    --yellow: rgb(255, 157, 0);
     --red: rgb(248, 109, 109);
 }
 
-/* body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
+body {
+    background-color: rgb(214, 211, 211);
+}
 
 div {
-    /* border: 1px solid black; */
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -39,7 +35,6 @@ div {
 
 #columns{
     display: flex;
-    /* min-width: 1000px; */
     height: 100%;
 }
 
@@ -48,9 +43,6 @@ div {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* border-right-color: var(--purple);  */
-    /* border: solid black 1px; */
 }
 
 #projects-header{
@@ -85,7 +77,6 @@ div {
     display: flex;
     justify-content: center;
     align-self: center;
-    /* padding-top: 1px; */
 }
 
 #add-project:hover{
@@ -93,8 +84,6 @@ div {
     border: 1px solid black;
     font-weight: bold;
     cursor: pointer;
-    /* border: black; */
-    /* border-radius: 50%; */
 }
 
 #project-form{
@@ -121,10 +110,6 @@ div {
 }
 
 .delete{
-    /* height: 10px;
-    width: 10px; */
-    /* display: flex; */
-    /* margin-left: auto; */
     margin-right: 5px;
     justify-content: flex-end;
 }
@@ -135,8 +120,6 @@ div {
 }
 
 .edit{
-    /* width: 10px;
-    height: 10px; */
     margin-left: auto;
     margin-right: 5px;
     justify-content: flex-end;
@@ -150,10 +133,8 @@ div {
 
 #todo-column{
     width: 600px;
-    /* min-width: 540px; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     border-left: var(--purple) solid 2px;
     padding-left: 10px;
     height: 100vh;
@@ -173,17 +154,7 @@ div {
     display: flex;
     width: 100%;
     height: 30px;
-    /* min-width: 600px; */
 }
-
-/* #addTaskBtn{
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-} */
 
 #addTaskBtn{
     border-radius: 50%;
@@ -194,7 +165,6 @@ div {
     display: flex;
     justify-content: center;
     align-self: center;
-    /* padding-top: 1px; */
 }
 
 #addTaskBtn:hover{
@@ -202,8 +172,6 @@ div {
     border: 1px solid black;
     font-weight: bold;
     cursor: pointer;
-    /* border: black; */
-    /* border-radius: 50%; */
 }
 
 #new-task-form{
@@ -214,7 +182,6 @@ div {
 }
 
 #date{
-    /* font-size: .8em; */
     display: flex;
     margin-left: 5px;
     margin-right: 5px;
@@ -236,16 +203,16 @@ div {
     width: 170px;
     align-content: center;
     justify-content: center;
+    background-color: white;
 }
 
 
 #priority-input{
-    /* width: 170px; */
     display: flex;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    
+    background-color: white;
 }
 
 /* Toggle Priority */
@@ -261,7 +228,6 @@ div {
     line-height: 100%;
     color: black;
     border: 1px solid #c2c2c2;
-    /* border: 1px solid black;  */
 }
 
 .toggle:hover{
@@ -309,15 +275,11 @@ div {
 
 #todo-content{
     height: 100%;
-    /* border: black 1px solid; */
 }
 
 .box{
     display: flex;
-    /* border: solid 1px black; */
     border-bottom: solid 1px var(--purple);
-    /* margin-top: 5px; */
-    /* margin-left: 26px; */
     margin-left: 5px;
     width: 533px;
     height: 40px;
@@ -326,7 +288,11 @@ div {
 }
 
 .task{
-    /* border: 1px solid black; */
+    margin-left: 5px;
+}
+
+.strikethrough{
+    text-decoration: line-through;
 }
 
 .uncheckedBox{
@@ -424,31 +390,23 @@ div {
 }
 
 .priorityDisplay{
-    /* margin-left: auto; */
     display: flex;
     justify-content: flex-end;
     border: 1px solid black;
+    background-color: white;
 }
-
-/* .dateText{
-    margin-left: 5px;
-    justify-content: flex-end;
-} */
 
 .dateDisplay{
     margin-left: 5px;
     margin-right: 2px;
-    /* margin-right: 5px; */
     justify-content: flex-end;
     height: 20px;
-    /* border: 1px solid black; */
     width: 140px;
 }
 
 .dateDisplay:hover{
     cursor: pointer;
 }
-
 
 /* New Project Modal */
 #modal-project{
@@ -470,14 +428,11 @@ div {
     padding: 20px;
     border: 1px solid #888;
     width: 400px;
-    /* height: 1000px; */
   }
 
   #form-project{
       display: flex;
       flex-direction: column;
-      /* width: 1000px;
-      height: 1000px; */
   }
 
   #edit-project{
@@ -487,10 +442,6 @@ div {
       margin-right: auto;
       margin-top: 0px;
   }
-
-  /* #titleForm{
-      margin-top: 0px;
-  } */
 
   #submit-project{
       width: 100px;
@@ -512,10 +463,6 @@ div {
     cursor: pointer;
   }
 
-
-
-
-
 /* Edit Task Modal */
 #modal-task{
     display: none;
@@ -536,19 +483,15 @@ div {
     padding: 20px;
     border: 1px solid #888;
     width: 600px;
-    /* height: 1000px; */
   }
 
   #modal-task-header{
       margin-left: 20px;
   }
 
-
   #form-task{
       display: flex;
       flex-direction: column;
-      /* width: 1000px;
-      height: 1000px; */
   }
 
   #edit-task{
@@ -558,12 +501,7 @@ div {
       margin-right: auto;
       margin-top: 0px;
       height: 200px;
-      /* overflow: auto; */
   }
-
-  /* #titleForm{
-      margin-top: 0px;
-  } */
 
   #submit-task{
       width: 100px;
@@ -585,11 +523,7 @@ div {
     cursor: pointer;
   }
 
-
 .noteDisplay{
-    /* width: 10px;
-    height: 10px; */
-    /* margin-left: 20px;  */
     margin-left: auto;
     margin-right: 5px;
     justify-content: flex-end;

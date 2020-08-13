@@ -1,6 +1,5 @@
 const { renderTasks } = require("./tasks");
 
-console.log("check webpack3")
 
 //Checks that Local Storage is available
 function storageAvailable(type) {
@@ -71,21 +70,18 @@ const addProject = (projectName, projectArray) => {
 
 //Factory Function to create Task
 const addTask = (taskName, project, priority, date, notes, done) => {
-return { 
-    taskName: taskName,
-    project: project,
-    priority: priority,
-    date: date,
-    notes: notes,
-    done: done
-}
+    return { 
+        taskName: taskName,
+        project: project,
+        priority: priority,
+        date: date,
+        notes: notes,
+        done: done
+    }
 };
 
 let allTasks = getAllTasks();
-
 let allTasksTab = addProject("all", allTasks);
-
-// let edittedObject = "";
 let activeProject = allTasksTab;
 
 //Adds new project to the "projectLibrary"
@@ -105,7 +101,6 @@ function addTaskToProject(newTask) {
 
 //Script for priority
 let priorityValue = "low";
-
 let lowBtn = document.getElementById("lowBtn");
 let mediumBtn = document.getElementById("mediumBtn");
 let highBtn = document.getElementById("highBtn");
@@ -144,8 +139,7 @@ function renderProjects(projectLibrary){
     if(projectsContent.length == 0) {
         return
       }
-    // console.log(projectLibrary.length)
-      if(projectLibrary.length == 0){
+    if(projectLibrary.length == 0){
         return
     }
 
@@ -161,13 +155,8 @@ function renderProjects(projectLibrary){
         renderTasks(activeProject, allTasks);
     };
 
-    // let allProjects = document.getElementsByClassName('project');
-    // let selectedProject = allProjects.getElementByClassName("selectedProject")
-    
-    //!!This "project" is where the issue is?
-    // console.log(projectLibrary)
+
     for (let project in projectLibrary) {
-        // console.log(projectLibrary[project])
         let obj = projectLibrary[project];
         let newElement = document.createElement('div');
         newElement.innerHTML = obj.projectName;
@@ -182,17 +171,9 @@ function renderProjects(projectLibrary){
             }
 
             newElement.classList.add("selectedProject");
-            // activeProject = obj.projectName;
-            // console.log("obj before activeProj:", obj)
-            // console.log("obj.projectArr before activeProj:", obj.projectArray)
             activeProject = obj;
-            // console.log("!! activeProject:", activeProject)
             selectedProject = document.querySelector('.selectedProject')
 
-            //code to load local storage of project Array? aka tasks?
-            // if(localStorage.length > 0) { 
-            //     projectLibrary = JSON.parse(localStorage.getItem("activeProject.projectArray"));
-            //   }
             renderTasks(activeProject, allTasks);
         };
 
@@ -205,33 +186,20 @@ function renderProjects(projectLibrary){
             modalProject.style.display = "block";
             edit.id = project;
             edittedProject = obj.projectName;
-            // console.log(obj.projectName)
-
             return edittedProject = edittedProject
-            // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
-            // renderProjects(projectLibrary)
           }
         newElement.appendChild(edit);
 
         //Button to delete projects
         let close = document.createElement('div');
-        // close.innerHTML = '&#128465';
         close.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
         close.className = "delete";
-        // close.id = project.projectName;
-        // console.log("project.projectName", project.projectName)
-        // obj.projectName
         close.id = project;
-        // console.log("project here", project)
         close.onclick = function() {
             closeName = projectLibrary[close.id].projectName;
-            console.log("closeName:", closeName)
             projectLibrary.splice(close.id,1);
             for (task in allTasks){
-                console.log('task.projectname,', allTasks[task].project)
-                console.log('obj id', closeName)
                 if (allTasks[task].project == closeName){
-                    console.log('match')
                     allTasks.splice(task,1)
                 }
             }
@@ -242,7 +210,6 @@ function renderProjects(projectLibrary){
           }
         newElement.appendChild(close);
         
-        // localStorage.setItem("projectLibrary", JSON.stringify(projectLibrary));
     };
     
 };
@@ -252,8 +219,6 @@ let addProjectBtn = document.getElementById("add-project");
 
 addProjectBtn.addEventListener('click', () => {
     let projectTitle = document.getElementById("project-form").value;
-    if (projectLibrary.length < 1){return};
-    //check for duplicate names
     for (project in projectLibrary){
         let obj = projectLibrary[project];
         if (obj.projectName == projectTitle){
