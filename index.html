@@ -1,0 +1,66 @@
+  <!doctype html>
+  <html>
+   <head>
+     <title>To-Do List</title>
+     <meta charset="UTF-8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="dist/css/main.css"> 
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
+   <body>
+    <div id="title"> To-Do's </div>
+    <div id="content-container">
+      <div id="columns">
+        <div id="projects-column">
+          <div id="projects-header" class="selectedProject">All To-Do's</div>
+          <div id="projects-content"></div>
+          <div id="new-project">
+            <div id="add-project">+</div>
+            <input type="text" id="project-form" placeholder="New Project"></input>
+          </div>
+        </div>
+        <div id="todo-column">
+        <div id="new-task">
+          <div id="row-one">
+            <div id="addTaskBtn">+</div>
+            <input type="text" id="new-task-form" placeholder="New Task"></input>
+            <input type="date" id="date"></input>
+            <div id="priority-div"> Priority:
+              <div id="priority-input">
+                <div id="lowBtn" class="toggle lowSelected" value="Low" checked>Low</div>
+                <div id="mediumBtn" class="toggle" value="Medium">Medium</div>
+                <div id="highBtn" class="toggle" value="High">High</div>
+              </div>
+            </div>
+          </div>
+          <div id="row-two">
+            <textarea id="notes-input" placeholder="Notes"></textarea>
+          </div>
+        </div>
+        <div id="todo-content"> </div>
+      </div>
+
+      <div id="modal-project" class="modal">
+        <div id="modal-project-content">
+          <span class="span">&times;</span>
+          <form id="form-project"> 
+            <input type="text" id="edit-project" class="form-input" placeholder="Project Title"></input>
+            <button type="button" id="submit-project">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="modal-task" class="modal">
+        <div id="modal-task-content">
+          <div id="modal-task-header">Notes:</div>
+          <span class="span-task">&times;</span>
+          <form id="form-task"> 
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <script src="dist/main.js"></script>
+   </body>
+  </html>
