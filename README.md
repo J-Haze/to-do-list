@@ -8,8 +8,13 @@ Create an interactive To-Do list. The app shows off my ability to create a funct
 
 ### Features: ###
 
-* Play against the computer
-* Play against another human (local)
+* Create To-Do's
+  * Set Priority, Description, & Due Date
+* Cross off To-Do's as you complete them
+* Seperate To-Do's by Project
+* Delete To-Do's or Projects
+* View all To-Do's or view them by project
+* Edit To-Do's after they've been made
 
 ### Built With: ###
 
