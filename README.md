@@ -4,7 +4,7 @@ App to help organize your To-Do's.
 🔗 **Live preview** of the app is [here](https://j-haze.github.io/to-do-list).
 
 ### Purpose: ###
-The purpose of this project was to create a a simple Tic-Tac-Toe game, while allowing me to practice and expand upon my knowledge of JavaScript.
+Create an interactive To-Do list. The app shows off my ability to create a functional application using JavaScript.
 
 ### Features: ###
 
